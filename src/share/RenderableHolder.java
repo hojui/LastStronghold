@@ -14,6 +14,9 @@ public class RenderableHolder {
 	public static Image enemyYellow;
 	public static Image enemyRed;
 	public static Image enemyBlue;
+	public static Image bulletYellow;
+	public static Image bulletRed;
+	public static Image bulletBlue;
 	
 	static {
 		loadResource();
@@ -28,8 +31,15 @@ public class RenderableHolder {
 	}
 
 	public static void loadResource() {
+		// Load enemy images
 		enemyRed = new Image(ClassLoader.getSystemResource("file:/res/img/enemyRed.png").toString(),100,100,false,true);
 		enemyBlue = new Image(ClassLoader.getSystemResource("file:/res/img/enemyRed.png").toString(),100,100,false,true);
 		enemyYellow = new Image(ClassLoader.getSystemResource("file:/res/img/enemyRed.png").toString(),100,100,false,true);
+	
+		// Load bullet images
+		bulletRed = new Image(ClassLoader.getSystemResource("file:/res/img/enemyRed.png").toString(),100,100,false,true);
+		bulletBlue = new Image(ClassLoader.getSystemResource("file:/res/img/enemyRed.png").toString(),100,100,false,true);
+		bulletYellow = new Image(ClassLoader.getSystemResource("file:/res/img/enemyRed.png").toString(),100,100,false,true);
+	
 	}
 }

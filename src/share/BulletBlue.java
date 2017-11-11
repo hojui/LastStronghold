@@ -17,8 +17,7 @@ public class BulletBlue extends Bullet implements IRenderable {
 	// Method
 	@Override
 	public void draw(GraphicsContext gc) {
-		// TODO Auto-generated method stubs
-		
+		gc.drawImage(RenderableHolder.bulletBlue, super.getX(), super.getY());
 	}
 	
 }
