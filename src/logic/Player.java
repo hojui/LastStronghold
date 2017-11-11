@@ -6,14 +6,14 @@ import share.RenderableHolder;
 
 public class Player extends Sprite implements IRenderable {
 	int shootTick;
-	int currentShootTick;
 	int imageIndex; // 0 - Not Move, 1 - Up, 2 - Down
 	
 	// Constructor
 	public Player() {
 		super();
 		shootTick = 30; // 0.5 second
-		currentShootTick = 0;
+		super.tick = 0;
+		super.setPosition(75, 225);
 	}
 	
 	// Method
@@ -22,8 +22,8 @@ public class Player extends Sprite implements IRenderable {
 	}
 	
 	public boolean shoot() {
-		if (currentShootTick >= shootTick) {
-			currentShootTick = 0;
+		if (tick >= shootTick) {
+			tick = 0;
 			return true;
 		}
 		return false;
