@@ -46,15 +46,6 @@ public class RenderableHolder {
 		// TODO set image name and location
 		
 		// Load enemy images
-<<<<<<< HEAD
-		enemyRed = new Image(ClassLoader.getSystemResource("file:/res/img/enemyRed.png").toString(),75,75,false,true);
-		enemyBlue = new Image(ClassLoader.getSystemResource("file:/res/img/enemyRed.png").toString(),75,75,false,true);
-		enemyYellow = new Image(ClassLoader.getSystemResource("file:/res/img/enemyRed.png").toString(),75,75,false,true);
-||||||| merged common ancestors
-		enemyRed = new Image(ClassLoader.getSystemResource("file:/res/img/enemyRed.png").toString(),100,100,false,true);
-		enemyBlue = new Image(ClassLoader.getSystemResource("file:/res/img/enemyRed.png").toString(),100,100,false,true);
-		enemyYellow = new Image(ClassLoader.getSystemResource("file:/res/img/enemyRed.png").toString(),100,100,false,true);
-=======
 		for (int number = 1; number < 5; number++) {
 			Image image = new Image(ClassLoader.getSystemResource("file:/res/img/enemyYellow" + number + ".png").toString(),100,100,false,true);
 			enemyYellowImages.add(image);
@@ -67,18 +58,8 @@ public class RenderableHolder {
 			Image image = new Image(ClassLoader.getSystemResource("file:/res/img/enemyBlue" + number + ".png").toString(),100,100,false,true);
 			enemyBlueImages.add(image);
 		}
->>>>>>> a5ee4332fd7afd49e92d8da6e7a2e639adce466b
-	
+
 		// Load bullet images
-<<<<<<< HEAD
-		bulletRed = new Image(ClassLoader.getSystemResource("file:/res/img/enemyRed.png").toString(),20,20,false,true);
-		bulletBlue = new Image(ClassLoader.getSystemResource("file:/res/img/enemyRed.png").toString(),20,20,false,true);
-		bulletYellow = new Image(ClassLoader.getSystemResource("file:/res/img/enemyRed.png").toString(),20,20,false,true);
-||||||| merged common ancestors
-		bulletRed = new Image(ClassLoader.getSystemResource("file:/res/img/enemyRed.png").toString(),100,100,false,true);
-		bulletBlue = new Image(ClassLoader.getSystemResource("file:/res/img/enemyRed.png").toString(),100,100,false,true);
-		bulletYellow = new Image(ClassLoader.getSystemResource("file:/res/img/enemyRed.png").toString(),100,100,false,true);
-=======
 		for (int number = 1; number < 5; number++) {
 			Image image = new Image(ClassLoader.getSystemResource("file:/res/img/bulletYellow" + number + ".png").toString(),100,100,false,true);
 			bulletYellowImages.add(image);
@@ -92,8 +73,7 @@ public class RenderableHolder {
 			bulletBlueImages.add(image);
 		}
 	}
->>>>>>> a5ee4332fd7afd49e92d8da6e7a2e639adce466b
-	
+
 	public void addEnemy(Enemy enemy) {
 		this.enemys.add(enemy);
 		System.out.println("Enemy added.");
