@@ -11,7 +11,7 @@ import share.RenderableHolder;
 
 public class GameScreen extends Canvas {
 
-	private ArrayList<String> input = new ArrayList<String>();
+	public static ArrayList<String> input = new ArrayList<String>();
 	private Field field = new Field();
 
 	public GameScreen() {
