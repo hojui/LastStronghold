@@ -7,6 +7,10 @@ public class EnemyRed extends Enemy implements IRenderable{
 	public EnemyRed () {
 		super();
 	}
+	
+	public EnemyRed (double x,double y,double vX) {
+		super(x,y,vX);
+	}
 
 	@Override
 	public void draw(GraphicsContext gc) {
