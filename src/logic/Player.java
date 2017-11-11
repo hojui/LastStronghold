@@ -16,11 +16,7 @@ public class Player extends Sprite implements IRenderable {
 		super.setPosition(75, 225);
 	}
 	
-	// Method
-	public void addShootTick() {
-		shootTick++;
-	}
-	
+	// Method	
 	public boolean shoot() {
 		if (tick >= shootTick) {
 			tick = 0;
