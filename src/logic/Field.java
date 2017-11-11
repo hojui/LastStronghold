@@ -5,9 +5,11 @@ import javafx.scene.paint.Color;
 import share.IRenderable;
 
 public class Field implements IRenderable{
-
+	
+	private int tick;
+	
 	public Field() {
-		
+		this.tick = 26;
 	}
 	
 	@Override
@@ -26,6 +28,18 @@ public class Field implements IRenderable{
 			gc.fillOval(randomX,randomY,10,10);
 		}
 		
+	}
+	
+	public void tickReset() {
+		this.tick = 0;
+	}
+	
+	public void tickIncrease() {
+		this.tick++;
+	}
+	
+	public int getTick() {
+		return this.tick;
 	}
 
 }

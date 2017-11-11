@@ -41,6 +41,14 @@ public class GameScreen extends Canvas {
 	
 	public void drawScreen() {
 		GraphicsContext gc = this.getGraphicsContext2D();
-		this.field.draw(gc);
+		
+		//draw field
+		field.tickIncrease();
+		if (field.getTick() > 25) {
+			field.draw(gc);
+			field.tickReset();
+		}
+		
+		
 	}
 }
