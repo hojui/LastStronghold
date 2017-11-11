@@ -1,13 +1,17 @@
 package share;
 
-import javafx.scene.canvas.GraphicsContext;
 
-public class Bullet extends Sprite implements IRenderable {
+public class Bullet extends Sprite {
 
-	@Override
-	public void draw(GraphicsContext gc) {
-		// TODO Auto-generated method stub
-		
+	// Constructor
+	public Bullet() {
+		super();
+	}
+	
+	public Bullet(int posX, int posY, int veloX) {
+		super();
+		setPosition(posX, posY);
+		setVelocity(veloX, 0);
 	}
 	
 }
