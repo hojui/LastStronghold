@@ -1,0 +1,27 @@
+package application;
+	
+import javafx.application.Application;
+import javafx.stage.Stage;
+import javafx.scene.Group;
+import javafx.scene.Scene;
+import javafx.scene.layout.BorderPane;
+
+
+public class Main extends Application {
+	@Override
+	public void start(Stage stage) {
+		try {
+			Group root = new Group();
+			Scene scene = new Scene(root);
+			stage.setScene(scene);
+			stage.setTitle("Last Stronghold I");
+			stage.show();
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public static void main(String[] args) {
+		launch(args);
+	}
+}
