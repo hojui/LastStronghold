@@ -27,7 +27,6 @@ public class Player extends Sprite implements IRenderable {
 
 	@Override
 	public void draw(GraphicsContext gc) {
-		RenderableHolder.getInstance();
 		gc.drawImage(RenderableHolder.playerImages.get(imageIndex), this.getX(), this.getY());
 	}
 
