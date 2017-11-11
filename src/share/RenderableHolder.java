@@ -6,6 +6,7 @@ import java.util.List;
 
 import javafx.scene.image.Image;
 import javafx.scene.media.AudioClip;
+import logic.Sprite;
 
 public class RenderableHolder {
 	private static final RenderableHolder instance = new RenderableHolder();

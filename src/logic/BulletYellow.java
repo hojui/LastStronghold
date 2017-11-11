@@ -1,7 +1,9 @@
-package share;
+package logic;
 
 
 import javafx.scene.canvas.GraphicsContext;
+import share.IRenderable;
+import share.RenderableHolder;
 
 public class BulletYellow extends Bullet implements IRenderable {
 	

@@ -1,5 +1,4 @@
-package share;
-
+package logic;
 
 public class Bullet extends Sprite {
 
