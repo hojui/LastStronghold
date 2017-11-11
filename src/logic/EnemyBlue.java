@@ -17,6 +17,6 @@ public class EnemyBlue extends Enemy implements IRenderable{
 	@Override
 	public void draw(GraphicsContext gc) {
 		// TODO Auto-generated method stub
-		gc.drawImage(RenderableHolder.enemyBlue, super.getX(), super.getY());
+		gc.drawImage(RenderableHolder.enemyBlueImages.get(0), super.getX(), super.getY());
 	}
 }
