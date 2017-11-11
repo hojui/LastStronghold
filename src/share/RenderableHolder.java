@@ -1,30 +1,40 @@
 package share;
 
 import java.util.ArrayList;
-import java.util.Comparator;
 import java.util.List;
 
 import javafx.scene.image.Image;
-import javafx.scene.media.AudioClip;
-import logic.Sprite;
+import logic.*;
 
 public class RenderableHolder {
 	private static final RenderableHolder instance = new RenderableHolder();
 	
-	private List<Sprite> enemy;
-	public static Image enemyYellow;
-	public static Image enemyRed;
-	public static Image enemyBlue;
-	public static Image bulletYellow;
-	public static Image bulletRed;
-	public static Image bulletBlue;
+	private List<Enemy> enemys;
+	private List<Bullet> bullets;
+	
+	public static List<Image> enemyYellowImages;
+	public static List<Image> enemyRedImages;
+	public static List<Image> enemyBlueImages;
+	
+	public static List<Image> bulletYellowImages;
+	public static List<Image> bulletRedImages;
+	public static List<Image> bulletBlueImages;
 	
 	static {
 		loadResource();
 	}
 	
 	public RenderableHolder() {
-		enemy = new ArrayList<Sprite>();
+		enemys = new ArrayList<>();
+		bullets = new ArrayList<>();
+		
+		enemyYellowImages = new ArrayList<>();
+		enemyRedImages = new ArrayList<>();
+		enemyBlueImages = new ArrayList<>();
+		
+		bulletYellowImages = new ArrayList<>();
+		bulletRedImages = new ArrayList<>();
+		bulletBlueImages = new ArrayList<>();
 	}
 
 	public static RenderableHolder getInstance() {
@@ -32,15 +42,66 @@ public class RenderableHolder {
 	}
 
 	public static void loadResource() {
+		// TODO set number of images
+		// TODO set image name and location
+		
 		// Load enemy images
+<<<<<<< HEAD
 		enemyRed = new Image(ClassLoader.getSystemResource("file:/res/img/enemyRed.png").toString(),75,75,false,true);
 		enemyBlue = new Image(ClassLoader.getSystemResource("file:/res/img/enemyRed.png").toString(),75,75,false,true);
 		enemyYellow = new Image(ClassLoader.getSystemResource("file:/res/img/enemyRed.png").toString(),75,75,false,true);
+||||||| merged common ancestors
+		enemyRed = new Image(ClassLoader.getSystemResource("file:/res/img/enemyRed.png").toString(),100,100,false,true);
+		enemyBlue = new Image(ClassLoader.getSystemResource("file:/res/img/enemyRed.png").toString(),100,100,false,true);
+		enemyYellow = new Image(ClassLoader.getSystemResource("file:/res/img/enemyRed.png").toString(),100,100,false,true);
+=======
+		for (int number = 1; number < 5; number++) {
+			Image image = new Image(ClassLoader.getSystemResource("file:/res/img/enemyYellow" + number + ".png").toString(),100,100,false,true);
+			enemyYellowImages.add(image);
+		}
+		for (int number = 1; number < 5; number++) {
+			Image image = new Image(ClassLoader.getSystemResource("file:/res/img/enemyRed" + number + ".png").toString(),100,100,false,true);
+			enemyRedImages.add(image);
+		}
+		for (int number = 1; number < 5; number++) {
+			Image image = new Image(ClassLoader.getSystemResource("file:/res/img/enemyBlue" + number + ".png").toString(),100,100,false,true);
+			enemyBlueImages.add(image);
+		}
+>>>>>>> a5ee4332fd7afd49e92d8da6e7a2e639adce466b
 	
 		// Load bullet images
+<<<<<<< HEAD
 		bulletRed = new Image(ClassLoader.getSystemResource("file:/res/img/enemyRed.png").toString(),20,20,false,true);
 		bulletBlue = new Image(ClassLoader.getSystemResource("file:/res/img/enemyRed.png").toString(),20,20,false,true);
 		bulletYellow = new Image(ClassLoader.getSystemResource("file:/res/img/enemyRed.png").toString(),20,20,false,true);
-	
+||||||| merged common ancestors
+		bulletRed = new Image(ClassLoader.getSystemResource("file:/res/img/enemyRed.png").toString(),100,100,false,true);
+		bulletBlue = new Image(ClassLoader.getSystemResource("file:/res/img/enemyRed.png").toString(),100,100,false,true);
+		bulletYellow = new Image(ClassLoader.getSystemResource("file:/res/img/enemyRed.png").toString(),100,100,false,true);
+=======
+		for (int number = 1; number < 5; number++) {
+			Image image = new Image(ClassLoader.getSystemResource("file:/res/img/bulletYellow" + number + ".png").toString(),100,100,false,true);
+			bulletYellowImages.add(image);
+		}
+		for (int number = 1; number < 5; number++) {
+			Image image = new Image(ClassLoader.getSystemResource("file:/res/img/bulletRed" + number + ".png").toString(),100,100,false,true);
+			bulletRedImages.add(image);
+		}
+		for (int number = 1; number < 5; number++) {
+			Image image = new Image(ClassLoader.getSystemResource("file:/res/img/bulletBlue" + number + ".png").toString(),100,100,false,true);
+			bulletBlueImages.add(image);
+		}
 	}
+>>>>>>> a5ee4332fd7afd49e92d8da6e7a2e639adce466b
+	
+	public void addEnemy(Enemy enemy) {
+		this.enemys.add(enemy);
+		System.out.println("Enemy added.");
+	}
+	
+	public void addBullet(Bullet bullet) {
+		this.bullets.add(bullet);
+		System.out.println("Bullet added. Fire in the holeeee");
+	}
+	
 }

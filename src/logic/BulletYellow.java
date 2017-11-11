@@ -19,7 +19,7 @@ public class BulletYellow extends Bullet implements IRenderable {
 	// Method
 	@Override
 	public void draw(GraphicsContext gc) {
-		gc.drawImage(RenderableHolder.bulletYellow, super.getX(), super.getY());
+		gc.drawImage(RenderableHolder.bulletYellowImages.get(0), super.getX(), super.getY());
 	}
 	
 }
