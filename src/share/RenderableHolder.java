@@ -28,8 +28,8 @@ public class RenderableHolder {
 	}
 
 	public static void loadResource() {
-		enemyRed = new Image(ClassLoader.getSystemResource("file:/res/img/enemyRed.png").toString());
-		enemyBlue = new Image(ClassLoader.getSystemResource("file:/res/img/enemyRed.png").toString());
-		enemyYellow = new Image(ClassLoader.getSystemResource("file:/res/img/enemyRed.png").toString());
+		enemyRed = new Image(ClassLoader.getSystemResource("file:/res/img/enemyRed.png").toString(),100,100,false,true);
+		enemyBlue = new Image(ClassLoader.getSystemResource("file:/res/img/enemyRed.png").toString(),100,100,false,true);
+		enemyYellow = new Image(ClassLoader.getSystemResource("file:/res/img/enemyRed.png").toString(),100,100,false,true);
 	}
 }
