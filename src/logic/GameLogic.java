@@ -3,9 +3,11 @@ package logic;
 import java.util.ArrayList;
 import java.util.List;
 
+import share.IRenderable;
+
 public class GameLogic {
-	private List<Enemy> enemyList;
-	private List<Bullet> bulletList;
+	private List<IRenderable> enemyList;
+	private List<IRenderable> bulletList;
 	
 	public GameLogic() {
 		enemyList = new ArrayList<>();

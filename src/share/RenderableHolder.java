@@ -4,13 +4,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javafx.scene.image.Image;
-import logic.*;
 
 public class RenderableHolder {
 	private static final RenderableHolder instance = new RenderableHolder();
 	
-	private List<Enemy> enemys;
-	private List<Bullet> bullets;
+	private List<IRenderable> enemys;
+	private List<IRenderable> bullets;
 	
 	public static List<Image> playerImages;
 	
@@ -82,12 +81,12 @@ public class RenderableHolder {
 		}
 	}
 
-	public void addEnemy(Enemy enemy) {
+	public void addEnemy(IRenderable enemy) {
 		this.enemys.add(enemy);
 		System.out.println("Enemy added.");
 	}
 	
-	public void addBullet(Bullet bullet) {
+	public void addBullet(IRenderable bullet) {
 		this.bullets.add(bullet);
 		System.out.println("Bullet added. Fire in the holeeee");
 	}
