@@ -10,7 +10,7 @@ public class BulletBlue extends Bullet implements IRenderable {
 		super();
 	}
 	
-	public BulletBlue(int posX, int posY, int veloX) {
+	public BulletBlue(double posX, double posY, double veloX) {
 		super(posX, posY, veloX);
 	}
 

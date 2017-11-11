@@ -8,7 +8,7 @@ public class Bullet extends Sprite {
 		super();
 	}
 	
-	public Bullet(int posX, int posY, int veloX) {
+	public Bullet(double posX, double posY, double veloX) {
 		super();
 		setPosition(posX, posY);
 		setVelocity(veloX, 0);
