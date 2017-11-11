@@ -45,6 +45,12 @@ public class RenderableHolder {
 		// TODO set number of images
 		// TODO set image name and location
 		
+		// Load player images
+		for (int number = 1; number < 5; number++) {
+			Image image = new Image(ClassLoader.getSystemResource("file:/res/img/player" + number + ".png").toString(),100,100,false,true);
+			enemyYellowImages.add(image);
+		}
+		
 		// Load enemy images
 		for (int number = 1; number < 5; number++) {
 			Image image = new Image(ClassLoader.getSystemResource("file:/res/img/enemyYellow" + number + ".png").toString(),100,100,false,true);
