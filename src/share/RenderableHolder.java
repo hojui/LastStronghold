@@ -33,14 +33,14 @@ public class RenderableHolder {
 
 	public static void loadResource() {
 		// Load enemy images
-		enemyRed = new Image(ClassLoader.getSystemResource("file:/res/img/enemyRed.png").toString(),100,100,false,true);
-		enemyBlue = new Image(ClassLoader.getSystemResource("file:/res/img/enemyRed.png").toString(),100,100,false,true);
-		enemyYellow = new Image(ClassLoader.getSystemResource("file:/res/img/enemyRed.png").toString(),100,100,false,true);
+		enemyRed = new Image(ClassLoader.getSystemResource("file:/res/img/enemyRed.png").toString(),75,75,false,true);
+		enemyBlue = new Image(ClassLoader.getSystemResource("file:/res/img/enemyRed.png").toString(),75,75,false,true);
+		enemyYellow = new Image(ClassLoader.getSystemResource("file:/res/img/enemyRed.png").toString(),75,75,false,true);
 	
 		// Load bullet images
-		bulletRed = new Image(ClassLoader.getSystemResource("file:/res/img/enemyRed.png").toString(),100,100,false,true);
-		bulletBlue = new Image(ClassLoader.getSystemResource("file:/res/img/enemyRed.png").toString(),100,100,false,true);
-		bulletYellow = new Image(ClassLoader.getSystemResource("file:/res/img/enemyRed.png").toString(),100,100,false,true);
+		bulletRed = new Image(ClassLoader.getSystemResource("file:/res/img/enemyRed.png").toString(),20,20,false,true);
+		bulletBlue = new Image(ClassLoader.getSystemResource("file:/res/img/enemyRed.png").toString(),20,20,false,true);
+		bulletYellow = new Image(ClassLoader.getSystemResource("file:/res/img/enemyRed.png").toString(),20,20,false,true);
 	
 	}
 }
