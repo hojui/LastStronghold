@@ -1,7 +1,7 @@
 package logic;
 
 public class Bullet extends Sprite {
-
+	
 	// Constructor
 	public Bullet() {
 		super();
