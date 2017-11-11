@@ -12,6 +12,8 @@ public class RenderableHolder {
 	private List<Enemy> enemys;
 	private List<Bullet> bullets;
 	
+	public static List<Image> playerImages;
+	
 	public static List<Image> enemyYellowImages;
 	public static List<Image> enemyRedImages;
 	public static List<Image> enemyBlueImages;
@@ -48,7 +50,7 @@ public class RenderableHolder {
 		// Load player images
 		for (int number = 1; number < 5; number++) {
 			Image image = new Image(ClassLoader.getSystemResource("file:/res/img/player" + number + ".png").toString(),100,100,false,true);
-			enemyYellowImages.add(image);
+			playerImages.add(image);
 		}
 		
 		// Load enemy images
