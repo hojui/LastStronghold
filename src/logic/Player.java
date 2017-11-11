@@ -12,13 +12,21 @@ public class Player extends Sprite implements IRenderable {
 	// Constructor
 	public Player() {
 		super();
-		shootTick = 30;
+		shootTick = 30; // 0.5 second
 		currentShootTick = 0;
 	}
 	
 	// Method
 	public void addShootTick() {
 		shootTick++;
+	}
+	
+	public boolean shoot() {
+		if (currentShootTick >= shootTick) {
+			currentShootTick = 0;
+			return true;
+		}
+		return false;
 	}
 
 	public void setImageIndex(int imageIndex) {
