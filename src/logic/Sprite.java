@@ -1,13 +1,8 @@
 package logic;
 
-import javafx.scene.image.Image;
-import javafx.scene.canvas.GraphicsContext;
-
-import java.util.ArrayList;
-
 import javafx.geometry.Rectangle2D;
 
-public class Sprite
+public abstract class Sprite
 {
     private double positionX;
     private double positionY;    
