@@ -4,13 +4,13 @@ import javafx.geometry.Rectangle2D;
 
 public abstract class Sprite
 {
-    private double positionX;
-    private double positionY;    
-    private double velocityX;
-    private double velocityY;
-    private double width;
-    private double height;
-    private int tick;
+	protected double positionX;
+    protected double positionY;    
+    protected double velocityX;
+    protected double velocityY;
+    protected double width;
+    protected double height;
+    protected int tick;
 
     public Sprite()
     {
