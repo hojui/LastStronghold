@@ -11,9 +11,9 @@ public class RenderableHolder {
 	private static final RenderableHolder instance = new RenderableHolder();
 	
 	private List<Sprite> enemy;
-	public static Image EnemyYellow;
-	public static Image EnemyRed;
-	public static Image EnemyBlue;
+	public static Image enemyYellow;
+	public static Image enemyRed;
+	public static Image enemyBlue;
 	
 	static {
 		loadResource();
@@ -28,6 +28,8 @@ public class RenderableHolder {
 	}
 
 	public static void loadResource() {
-		
+		enemyRed = new Image(ClassLoader.getSystemResource("file:/res/img/enemyRed.png").toString());
+		enemyBlue = new Image(ClassLoader.getSystemResource("file:/res/img/enemyRed.png").toString());
+		enemyYellow = new Image(ClassLoader.getSystemResource("file:/res/img/enemyRed.png").toString());
 	}
 }
