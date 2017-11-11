@@ -19,7 +19,7 @@ public class Player extends Sprite implements IRenderable {
 	// Method	
 	public boolean shoot() {
 		if (tick >= shootTick) {
-			tick = 0;
+			tickReset();
 			return true;
 		}
 		return false;
