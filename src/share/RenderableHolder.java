@@ -47,7 +47,7 @@ public class RenderableHolder {
 		// TODO set image name and location
 		
 		// Load player images
-		for (int number = 1; number < 5; number++) {
+		for (int number = 1; number < 4; number++) {
 			Image image = new Image(ClassLoader.getSystemResource("file:/res/img/player" + number + ".png").toString(),100,100,false,true);
 			playerImages.add(image);
 		}
