@@ -47,27 +47,27 @@ public class RenderableHolder {
 		// TODO set image name and location
 		
 		// Load player images
-		for (int number = 1; number < 4; number++) {
+		for (int number = 1; number <= 3; number++) {
 			Image image = new Image(ClassLoader.getSystemResource("file:/res/img/player" + number + ".png").toString(),100,100,false,true);
 			playerImages.add(image);
 		}
 		
 		// Load enemy images
-		for (int number = 1; number < 5; number++) {
+		for (int number = 1; number <= 7; number++) {
 			Image image = new Image(ClassLoader.getSystemResource("file:/res/img/enemyYellow" + number + ".png").toString(),75,75,false,true);
 			enemyYellowImages.add(image);
 		}
-		for (int number = 1; number < 5; number++) {
+		for (int number = 1; number <= 7; number++) {
 			Image image = new Image(ClassLoader.getSystemResource("file:/res/img/enemyRed" + number + ".png").toString(),75,75,false,true);
 			enemyRedImages.add(image);
 		}
-		for (int number = 1; number < 5; number++) {
+		for (int number = 1; number <= 7; number++) {
 			Image image = new Image(ClassLoader.getSystemResource("file:/res/img/enemyBlue" + number + ".png").toString(),75,75,false,true);
 			enemyBlueImages.add(image);
 		}
 
 		// Load bullet images
-		for (int number = 1; number < 5; number++) {
+		for (int number = 1; number <= 2; number++) {
 			Image image = new Image(ClassLoader.getSystemResource("file:/res/img/bulletYellow" + number + ".png").toString(),20,20,false,true);
 			bulletYellowImages.add(image);
 		}
