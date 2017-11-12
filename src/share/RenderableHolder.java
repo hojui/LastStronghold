@@ -17,9 +17,9 @@ public class RenderableHolder {
 	public static List<Image> enemyRedImages;
 	public static List<Image> enemyBlueImages;
 	
-	public static List<Image> bulletYellowImages;
-	public static List<Image> bulletRedImages;
-	public static List<Image> bulletBlueImages;
+	public static Image bulletYellowImage;
+	public static Image bulletRedImage;
+	public static Image bulletBlueImage;
 	
 	static {
 		loadResource();
@@ -32,10 +32,6 @@ public class RenderableHolder {
 		enemyYellowImages = new ArrayList<>();
 		enemyRedImages = new ArrayList<>();
 		enemyBlueImages = new ArrayList<>();
-		
-		bulletYellowImages = new ArrayList<>();
-		bulletRedImages = new ArrayList<>();
-		bulletBlueImages = new ArrayList<>();
 	}
 
 	public static RenderableHolder getInstance() {
@@ -43,12 +39,11 @@ public class RenderableHolder {
 	}
 
 	public static void loadResource() {
-		// TODO set number of images
 		// TODO set image name and location
 		
 		// Load player images
 		for (int number = 1; number <= 3; number++) {
-			Image image = new Image(ClassLoader.getSystemResource("file:/res/img/player" + number + ".png").toString(),100,100,false,true);
+			Image image = new Image(ClassLoader.getSystemResource("file:/res/img/player" + number + ".png").toString(),75,75,false,true);
 			playerImages.add(image);
 		}
 		
@@ -67,18 +62,9 @@ public class RenderableHolder {
 		}
 
 		// Load bullet images
-		for (int number = 1; number <= 2; number++) {
-			Image image = new Image(ClassLoader.getSystemResource("file:/res/img/bulletYellow" + number + ".png").toString(),20,20,false,true);
-			bulletYellowImages.add(image);
-		}
-		for (int number = 1; number < 5; number++) {
-			Image image = new Image(ClassLoader.getSystemResource("file:/res/img/bulletRed" + number + ".png").toString(),20,20,false,true);
-			bulletRedImages.add(image);
-		}
-		for (int number = 1; number < 5; number++) {
-			Image image = new Image(ClassLoader.getSystemResource("file:/res/img/bulletBlue" + number + ".png").toString(),20,20,false,true);
-			bulletBlueImages.add(image);
-		}
+		bulletYellowImage = new Image(ClassLoader.getSystemResource("file:/res/img/bulletYellow.png").toString(),30,9,false,true);
+		bulletRedImage = new Image(ClassLoader.getSystemResource("file:/res/img/bulletRed.png").toString(),30,9,false,true);
+		bulletBlueImage = new Image(ClassLoader.getSystemResource("file:/res/img/bulletBlue.png").toString(),30,9,false,true);
 	}
 
 	public void addEnemy(IRenderable enemy) {
