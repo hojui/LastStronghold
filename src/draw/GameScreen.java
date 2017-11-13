@@ -7,7 +7,6 @@ import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.input.KeyEvent;
 import logic.Field;
-import share.RenderableHolder;
 
 public class GameScreen extends Canvas {
 
