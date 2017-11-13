@@ -10,7 +10,7 @@ import logic.Field;
 
 public class GameScreen extends Canvas {
 
-	public static ArrayList<String> input = new ArrayList<String>();
+	public static ArrayList<String> inputs = new ArrayList<String>();
 	private Field field = new Field();
 
 	public GameScreen() {
@@ -23,8 +23,8 @@ public class GameScreen extends Canvas {
 			public void handle(KeyEvent e) {
 				System.out.println("Press  "+e.getCode().toString() );
 				String t = e.getCode().toString();
-				if (!input.contains(t)) {
-					input.add(t);
+				if (!inputs.contains(t)) {
+					inputs.add(t);
 				}
 			}
 		});
@@ -33,7 +33,7 @@ public class GameScreen extends Canvas {
 			public void handle(KeyEvent e) {
 				System.out.println("Release  "+e.getCode().toString() );
 				String code = e.getCode().toString();
-				input.remove(code);
+				inputs.remove(code);
 			}
 		});
 	}

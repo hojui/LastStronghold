@@ -8,8 +8,8 @@ import javafx.scene.image.Image;
 public class RenderableHolder {
 	private static final RenderableHolder instance = new RenderableHolder();
 	
-	private List<IRenderable> enemys;
-	private List<IRenderable> bullets;
+	public static List<IRenderable> enemys;
+	public static List<IRenderable> bullets;
 	
 	public static List<Image> playerImages;
 	
@@ -20,6 +20,8 @@ public class RenderableHolder {
 	public static Image bulletYellowImage;
 	public static Image bulletRedImage;
 	public static Image bulletBlueImage;
+	
+	private int score;
 	
 	static {
 		loadResource();
@@ -32,6 +34,8 @@ public class RenderableHolder {
 		enemyYellowImages = new ArrayList<>();
 		enemyRedImages = new ArrayList<>();
 		enemyBlueImages = new ArrayList<>();
+		
+		score = 0;
 	}
 
 	public static RenderableHolder getInstance() {
@@ -75,6 +79,14 @@ public class RenderableHolder {
 	public void addBullet(IRenderable bullet) {
 		this.bullets.add(bullet);
 		System.out.println("Bullet added. Fire in the holeeee");
+	}
+
+	public int getScore() {
+		return score;
+	}
+
+	public void setScore(int score) {
+		this.score = score;
 	}
 	
 }

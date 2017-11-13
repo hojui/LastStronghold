@@ -46,10 +46,10 @@ public abstract class Sprite
         velocityY += y;
     }
 
-    public void update(double time)
+    public void update(double x, double y)
     {
-        positionX += velocityX * time;
-        positionY += velocityY * time;
+        positionX += x;
+        positionY += y;
     }
 
     public Rectangle2D getBoundary()
