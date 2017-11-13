@@ -4,6 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import draw.GameScreen;
+import javafx.application.Platform;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
+import javafx.scene.control.Alert.AlertType;
 import share.IRenderable;
 import share.RenderableHolder;
 
@@ -46,29 +50,14 @@ public class GameLogic {
 			player.update(0, 7);
 		}
 		if (GameScreen.inputs.contains("A")) {
-			Bullet bullet;
-			switch (bulletState) {
-			case 0 :
-				bullet = new BulletRed(player.getX() + 75, player.getY() + 37.5, 12);
-				break;
-			case 1 :
-				bullet = new BulletBlue(player.getX() + 75, player.getY() + 37.5, 12);
-				break;
-			case 2 :
-				bullet = new BulletYellow(player.getX() + 75, player.getY() + 37.5, 12);
-				break;
-			default :
-				bullet = new BulletRed(player.getX() + 75, player.getY() + 37.5, 12);
-				break;
-			}
-			addBullet((IRenderable) bullet);
-			RenderableHolder.getInstance().addBullet((IRenderable) bullet);
+			fireBullet();
 		}
 		if (GameScreen.inputs.contains("TAB")) {
 			bulletState = (bulletState + 1) % 3;
 		}
 		
 		updatePosition();
+		isCollided();
 		
 		if (currentEnemyTick++ > enemyTick) {
 			generateEnemy();
@@ -99,7 +88,7 @@ public class GameLogic {
 		}
 	}
 
-	public void generateEnemy() {
+	private void generateEnemy() {
 		int rand = (int) (Math.random() * 3 + 1);
 		int position = (int) (Math.random() * 325 + 1);
 		Enemy enemy;
@@ -119,22 +108,50 @@ public class GameLogic {
 		}
 		enemyList.add((IRenderable) enemy);
 		RenderableHolder.getInstance().addEnemy((IRenderable) enemy);
+		enemyCount++;
 	}
 	
-	public void isCollided() {
+	private void isCollided() {
 		for (IRenderable bullet : bulletList) {
 			for (IRenderable enemy : enemyList) {
 				if (((Bullet) bullet).intersects((Enemy) enemy)) {
 					bulletList.remove(bullet);
 					enemyList.remove(enemy);
+					score += 100; // TODO Set score
 				}
 			}
 		}
 		for (IRenderable enemy : enemyList) {
 			if (player.intersects((Enemy) enemy)) {
-				/// TODO End game
+				endGame();
 			}
 		}
 	}
 	
+	private void fireBullet() {
+		Bullet bullet;
+		switch (bulletState) {
+		case 0 :
+			bullet = new BulletRed(player.getX() + 75, player.getY() + 37.5, 12);
+			break;
+		case 1 :
+			bullet = new BulletBlue(player.getX() + 75, player.getY() + 37.5, 12);
+			break;
+		case 2 :
+			bullet = new BulletYellow(player.getX() + 75, player.getY() + 37.5, 12);
+			break;
+		default :
+			bullet = new BulletRed(player.getX() + 75, player.getY() + 37.5, 12);
+			break;
+		}
+		addBullet((IRenderable) bullet);
+		RenderableHolder.getInstance().addBullet((IRenderable) bullet);
+	}
+
+	private void endGame() {
+		Alert alert = new Alert(AlertType.NONE, "GAME OVER", ButtonType.OK);
+		alert.setContentText("Score : " + this.score);
+		Platform.exit();
+	}
+
 }
