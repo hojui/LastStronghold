@@ -13,13 +13,15 @@ public class Main extends Application {
 		try {
 			Group root = new Group();
 			Scene scene = new Scene(root,800,450);
+			
+			// Create GameScreen
+			GameScreen gameScreen = new GameScreen();
+			root.getChildren().add(gameScreen);
+			gameScreen.requestFocus();
+			
 			stage.setScene(scene);
 			stage.setTitle("Last Stronghold I");
 			stage.show();
-			
-			//Create GameScreen
-			GameScreen gameScreen = new GameScreen();
-			root.getChildren().add(gameScreen);
 			
 			new AnimationTimer() {
 
