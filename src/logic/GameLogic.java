@@ -49,6 +49,7 @@ public class GameLogic {
 		readInput();
 		updatePosition();
 		checkBulletOutOfScreen();
+		checkPlayerOutOfScreen();
 		checkIfEnemyDestroy();
 		if (currentEnemyTick++ > enemyTick)
 			generateEnemy();
@@ -88,6 +89,17 @@ public class GameLogic {
 		}
 		bulletList.removeAll(toRemove);
 		RenderableHolder.getInstance().removeBullet(toRemove);
+	}
+	
+	private void checkPlayerOutOfScreen() {
+		if (this.player.getY() < 0) {
+			this.player.setPosition(25, 400);
+			RenderableHolder.getInstance().setPlayerPosition(25, 400);
+		}
+		if (this.player.getY() > 400) {
+			this.player.setPosition(25, 0);
+			RenderableHolder.getInstance().setPlayerPosition(25, 0);
+		}
 	}
 
 	private void generateEnemy() {

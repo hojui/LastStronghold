@@ -142,6 +142,10 @@ public class RenderableHolder {
 	public void updateImagePlayer(int i) {
 		this.player.setImageIndex(i);
 	}
+	
+	public void setPlayerPosition(double x,double y) {
+		this.player.setPosition(x, y);
+	}
 
 	public int getBulletState() {
 		return bulletState;
