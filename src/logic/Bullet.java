@@ -16,4 +16,9 @@ public class Bullet extends Sprite {
 		super.height = 9;
 	}
 	
+	public boolean isOutOfScreen() {
+		if (this.getX() >= 800) return true;
+		return false;
+	}
+	
 }
