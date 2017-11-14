@@ -45,6 +45,7 @@ public class GameLogic {
 	}
 
 	public void updateLogic() {
+		player.tickIncrease();
 		readInput();
 		updatePosition();
 		checkBulletOutOfScreen();
@@ -148,7 +149,6 @@ public class GameLogic {
 	}
 
 	private void fireBullet() {
-		player.tickIncrease();
 		if (player.canShoot()) {
 			Bullet bullet;
 			switch (bulletState) {
@@ -179,6 +179,7 @@ public class GameLogic {
 	}
 
 	private void readInput() {
+		System.out.println(GameScreen.inputs);
 		if (GameScreen.inputs.contains("UP")) {
 			player.update(0, -7);
 			RenderableHolder.getInstance().updatePlayer(0, -7);

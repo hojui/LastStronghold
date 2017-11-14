@@ -25,7 +25,6 @@ public class GameScreen extends Canvas {
 	public void addListener() {
 		this.setOnKeyPressed(new EventHandler<KeyEvent>() {
 			public void handle(KeyEvent e) {
-				System.out.println("Press  "+e.getCode().toString() );
 				String t = e.getCode().toString();
 				if (!inputs.contains(t)) {
 					inputs.add(t);
@@ -35,7 +34,6 @@ public class GameScreen extends Canvas {
 
 		this.setOnKeyReleased(new EventHandler<KeyEvent>() {
 			public void handle(KeyEvent e) {
-				System.out.println("Release  "+e.getCode().toString() );
 				String code = e.getCode().toString();
 				inputs.remove(code);
 			}
