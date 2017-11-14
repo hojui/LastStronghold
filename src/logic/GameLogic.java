@@ -180,12 +180,20 @@ public class GameLogic {
 
 	private void readInput() {
 		System.out.println(GameScreen.inputs);
+		if (!GameScreen.inputs.contains("UP") && !GameScreen.inputs.contains("DOWN")) {
+			this.player.setImageIndex(0);
+			RenderableHolder.getInstance().updateImagePlayer(0);
+		}
 		if (GameScreen.inputs.contains("UP")) {
 			player.update(0, -7);
+			player.setImageIndex(1);
+			RenderableHolder.getInstance().updateImagePlayer(1);
 			RenderableHolder.getInstance().updatePlayer(0, -7);
 		}
 		if (GameScreen.inputs.contains("DOWN")) {
 			player.update(0, 7);
+			player.setImageIndex(2);
+			RenderableHolder.getInstance().updateImagePlayer(2);
 			RenderableHolder.getInstance().updatePlayer(0, 7);
 		}
 		if (GameScreen.inputs.contains("A")) {

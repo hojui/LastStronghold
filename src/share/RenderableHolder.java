@@ -138,6 +138,10 @@ public class RenderableHolder {
 	public void updatePlayer(double x, double y) {
 		this.player.update(x, y);
 	}
+	
+	public void updateImagePlayer(int i) {
+		this.player.setImageIndex(i);
+	}
 
 	public int getBulletState() {
 		return bulletState;
