@@ -19,12 +19,15 @@ public class GameScreen extends Canvas {
 	public static ArrayList<String> inputs = new ArrayList<String>();
 	private Field field = new Field();
 
+	// Constructor
 	public GameScreen() {
 		super(800, 450);
 		addListener();
 	}
 
+	// Add key listener
 	public void addListener() {
+		// Add pressed key to list
 		this.setOnKeyPressed(new EventHandler<KeyEvent>() {
 			public void handle(KeyEvent e) {
 				String t = e.getCode().toString();
@@ -33,7 +36,7 @@ public class GameScreen extends Canvas {
 				}
 			}
 		});
-
+		// Remove released key from list
 		this.setOnKeyReleased(new EventHandler<KeyEvent>() {
 			public void handle(KeyEvent e) {
 				String code = e.getCode().toString();
@@ -42,6 +45,7 @@ public class GameScreen extends Canvas {
 		});
 	}
 
+	// Main draw method
 	public void drawScreen() {
 		GraphicsContext gc = this.getGraphicsContext2D();
 		drawField(gc);
@@ -51,6 +55,7 @@ public class GameScreen extends Canvas {
 		drawStatus(gc);
 	}
 
+	// Private method
 	private void drawField(GraphicsContext gc) {
 		field.tickIncrease();
 		// if (field.getTick() > 25) {
