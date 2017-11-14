@@ -20,6 +20,7 @@ public class GameLogic {
 	private int enemyTick;
 	private int currentEnemyTick;
 	private int score;
+	private double currentEnemySpeed;
 
 	public GameLogic() {
 		player = new Player();
@@ -30,6 +31,7 @@ public class GameLogic {
 		enemyTick = 60;
 		currentEnemyTick = 0;
 		score = 0;
+		currentEnemySpeed = -1;
 	}
 
 	public void addEnemy(IRenderable enemy) {
@@ -81,16 +83,16 @@ public class GameLogic {
 		Enemy enemy;
 		switch (rand) {
 		case 1:
-			enemy = new EnemyRed(800, position, -1);
+			enemy = new EnemyRed(800, position, currentEnemySpeed);
 			break;
 		case 2:
-			enemy = new EnemyBlue(800, position, -1);
+			enemy = new EnemyBlue(800, position, currentEnemySpeed);
 			break;
 		case 3:
-			enemy = new EnemyYellow(800, position, -1);
+			enemy = new EnemyYellow(800, position, currentEnemySpeed);
 			break;
 		default:
-			enemy = new EnemyRed(800, position, -1);
+			enemy = new EnemyRed(800, position, currentEnemySpeed);
 			break;
 		}
 		enemyList.add((IRenderable) enemy);
@@ -154,7 +156,8 @@ public class GameLogic {
 	}
 
 	private void endGame() {
-		Alert alert = new Alert(AlertType.NONE, "GAME OVER", ButtonType.OK);
+		// TODO fix end game alert
+		Alert alert = new Alert(AlertType.CONFIRMATION, "GAME OVER", ButtonType.OK);
 		alert.setContentText("Score : " + this.score);
 		alert.showAndWait();
 		Platform.exit();
@@ -180,14 +183,18 @@ public class GameLogic {
 	}
 
 	private void updateLevel() {
-		if (score > 10000) {
+		if (score > 12000) {
 			enemyTick = 10;
-		} else if (score > 7000) {
+			currentEnemySpeed = -2.0;
+		} else if (score > 8000) {
 			enemyTick = 30;
+			currentEnemySpeed = -1.7;
 		} else if (score > 5000) {
 			enemyTick = 40;
+			currentEnemySpeed = -1.5;
 		} else if (score > 3000) {
 			enemyTick = 50;
+			currentEnemySpeed = -1.2;
 		}
 	}
 

@@ -89,32 +89,26 @@ public class RenderableHolder {
 
 	public void addEnemy(IRenderable enemy) {
 		enemies.add(enemy);
-		System.out.println("Enemy added.");
 	}
 	
 	public void addDeadEnemy(IRenderable deadEnemy) {
 		deadEnemies.add(deadEnemy);
-		System.out.println("Dead enemy added.");
 	}
 	
 	public void addBullet(IRenderable bullet) {
 		bullets.add(bullet);
-		System.out.println("Bullet added. Fire in the holeeee");
 	}
 	
 	public void removeEnemy(List<IRenderable> bullet) {
 		enemies.removeAll(bullet);
-		System.out.println("Enemy removed.");
 	}
 	
 	public void removeDeadEnemy(IRenderable deadEnemy) {
 		deadEnemies.remove(deadEnemy);
-		System.out.println("Dead enemy removed.");
 	}
 	
 	public void removeBullet(List<IRenderable> bullet) {
 		bullets.removeAll(bullet);
-		System.out.println("Bullet removed.");
 	}
 	
 	public void addScore(int score) {
