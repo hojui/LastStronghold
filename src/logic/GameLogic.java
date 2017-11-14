@@ -20,7 +20,7 @@ public class GameLogic {
 	private int enemyTick;
 	private int currentEnemyTick;
 	private int score;
-	
+
 	public GameLogic() {
 		player = new Player();
 		enemyList = new ArrayList<>();
@@ -31,26 +31,27 @@ public class GameLogic {
 		currentEnemyTick = 0;
 		score = 0;
 	}
-	
+
 	public void addEnemy(IRenderable enemy) {
 		enemyList.add(enemy);
 		RenderableHolder.getInstance().addEnemy(enemy);
 	}
-	
+
 	public void addBullet(IRenderable bullet) {
 		bulletList.add(bullet);
 		RenderableHolder.getInstance().addBullet(bullet);
 	}
-	
+
 	public void updateLogic() {
 		readInput();
 		updatePosition();
 		checkIfEnemyDestroy();
-		if (currentEnemyTick++ > enemyTick) generateEnemy();
+		if (currentEnemyTick++ > enemyTick)
+			generateEnemy();
 		updateLevel();
 		checkIfEndGame();
 	}
-	
+
 	private void updatePosition() {
 		// Update logic bullet list position
 		for (IRenderable bullet : bulletList) {
@@ -79,68 +80,82 @@ public class GameLogic {
 		int position = (int) (Math.random() * 325 + 1);
 		Enemy enemy;
 		switch (rand) {
-		case 1 :
-			enemy = new EnemyRed(450, position, -17);
+		case 1:
+			enemy = new EnemyRed(800, position, -1);
 			break;
-		case 2 :
-			enemy = new EnemyBlue(450, position, -17);
+		case 2:
+			enemy = new EnemyBlue(800, position, -1);
 			break;
-		case 3 :
-			enemy = new EnemyYellow(450, position, -17);
+		case 3:
+			enemy = new EnemyYellow(800, position, -1);
 			break;
-		default :
-			enemy = new EnemyRed(450, position, -17);
+		default:
+			enemy = new EnemyRed(800, position, -1);
 			break;
 		}
 		enemyList.add((IRenderable) enemy);
 		RenderableHolder.getInstance().addEnemy((IRenderable) enemy);
 		currentEnemyTick = 0;
 	}
-	
+
 	private void checkIfEnemyDestroy() {
 		for (IRenderable bullet : bulletList) {
 			for (IRenderable enemy : enemyList) {
-				if (((Bullet) bullet).intersects((Enemy) enemy)) {
+				if (((Sprite) bullet).intersects((Sprite) enemy)) {
+					if (isSameColor(bullet, enemy)) {
+						deadEnemyList.add(enemy);
+						RenderableHolder.getInstance().addDeadEnemy(enemy);
+						enemyList.remove(enemy);
+						RenderableHolder.getInstance().removeEnemy(enemy);
+						score += 100;
+						RenderableHolder.getInstance().addScore(100);
+						System.out.println("Score : " + score);
+					} // TODO Fix remove bullet
 					bulletList.remove(bullet);
 					RenderableHolder.getInstance().removeBullet(bullet);
-					deadEnemyList.add(enemy);
-					RenderableHolder.getInstance().addDeadEnemy(enemy);
-					enemyList.remove(enemy);
-					RenderableHolder.getInstance().removeEnemy(enemy);
-					score += 100;
-					RenderableHolder.getInstance().addScore(100);
-					System.out.println("Score : " + score);
+
 				}
 			}
 		}
 	}
 	
+	private boolean isSameColor(IRenderable bullet, IRenderable enemy) {
+		if (bullet instanceof BulletRed && enemy instanceof EnemyRed) return true;
+		if (bullet instanceof BulletBlue && enemy instanceof EnemyBlue) return true;
+		if (bullet instanceof BulletYellow && enemy instanceof EnemyYellow) return true;
+		return false;
+	}
+
 	private void fireBullet() {
-		Bullet bullet;
-		switch (bulletState) {
-		case 0 :
-			bullet = new BulletRed(player.getX() + 75, player.getY() + 37.5, 12);
-			break;
-		case 1 :
-			bullet = new BulletBlue(player.getX() + 75, player.getY() + 37.5, 12);
-			break;
-		case 2 :
-			bullet = new BulletYellow(player.getX() + 75, player.getY() + 37.5, 12);
-			break;
-		default :
-			bullet = new BulletRed(player.getX() + 75, player.getY() + 37.5, 12);
-			break;
+		player.tickIncrease();
+		if (player.canShoot()) {
+			Bullet bullet;
+			switch (bulletState) {
+			case 0:
+				bullet = new BulletRed(player.getX() + 75, player.getY() + 37.5, 12);
+				break;
+			case 1:
+				bullet = new BulletBlue(player.getX() + 75, player.getY() + 37.5, 12);
+				break;
+			case 2:
+				bullet = new BulletYellow(player.getX() + 75, player.getY() + 37.5, 12);
+				break;
+			default:
+				bullet = new BulletRed(player.getX() + 75, player.getY() + 37.5, 12);
+				break;
+			}
+			addBullet((IRenderable) bullet);
+			RenderableHolder.getInstance().addBullet((IRenderable) bullet);
 		}
-		addBullet((IRenderable) bullet);
-		RenderableHolder.getInstance().addBullet((IRenderable) bullet);
 	}
 
 	private void endGame() {
 		Alert alert = new Alert(AlertType.NONE, "GAME OVER", ButtonType.OK);
 		alert.setContentText("Score : " + this.score);
+		alert.showAndWait();
 		Platform.exit();
 	}
-	
+
 	private void readInput() {
 		if (GameScreen.inputs.contains("UP")) {
 			player.update(0, -7);
@@ -156,6 +171,7 @@ public class GameLogic {
 		if (GameScreen.inputs.contains("TAB")) {
 			bulletState = (bulletState + 1) % 3;
 			RenderableHolder.getInstance().setBulletState(bulletState);
+			GameScreen.inputs.remove("TAB");
 		}
 	}
 
@@ -170,12 +186,14 @@ public class GameLogic {
 			enemyTick = 50;
 		}
 	}
-	
+
 	private void checkIfEndGame() {
 		for (IRenderable enemy : enemyList) {
-			if (player.intersects((Enemy) enemy)) endGame();
-			if (((Enemy) enemy).isOutOfScreen()) endGame();
+			if (player.intersects((Enemy) enemy))
+				endGame();
+			if (((Enemy) enemy).isOutOfScreen())
+				endGame();
 		}
 	}
-	
+
 }

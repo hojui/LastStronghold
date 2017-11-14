@@ -53,10 +53,11 @@ public class GameScreen extends Canvas {
 	
 	private void drawField(GraphicsContext gc) {
 		field.tickIncrease();
-		if (field.getTick() > 25) {
-			field.draw(gc);
-			field.tickReset();
-		}
+//		if (field.getTick() > 25) {
+//			field.draw(gc);
+//			field.tickReset();
+//		}
+		field.draw(gc);
 	}
 	
 	private void drawEnemys(GraphicsContext gc) {
@@ -87,7 +88,7 @@ public class GameScreen extends Canvas {
 		default :
 			gc.setFill(Color.RED); break;
 		}
-		gc.fillRect(30, 410, 30, 60);
+		gc.fillRect(30, 410, 60, 30);
 		// Set score display
 		gc.setFill(Color.BLACK);
 		gc.setFont(Font.font(20));

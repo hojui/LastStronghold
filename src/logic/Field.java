@@ -16,6 +16,7 @@ public class Field implements IRenderable{
 	public void draw(GraphicsContext gc) {
 		gc.setFill(Color.BLACK);
 		gc.fillRect(0, 0, 800, 450);
+		
 		gc.setFill(Color.WHITE);
 		for (int i = 0 ; i < 10 ; i++) {
 			int randomX = (int) (Math.random()*800 +1);

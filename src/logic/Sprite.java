@@ -69,11 +69,14 @@ public abstract class Sprite
     }
 
     public void tickIncrease() {
-    		System.out.println(this.tick);
     		this.tick++;
     }
     
     public void tickReset() {
     		this.tick = 0;
+    }
+    
+    public int getTick() {
+    	return this.tick;
     }
 }

@@ -47,6 +47,8 @@ public class RenderableHolder {
 		enemyRedImages = new ArrayList<>();
 		enemyBlueImages = new ArrayList<>();
 		
+		playerImages = new ArrayList<>();
+		
 		score = 0;
 		player = new Player();
 		bulletState = 0;
@@ -140,7 +142,7 @@ public class RenderableHolder {
 	}
 	
 	public void updatePlayer(double x, double y) {
-		this.player.setPosition(x, y);
+		this.player.update(x, y);
 	}
 
 	public int getBulletState() {

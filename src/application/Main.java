@@ -31,10 +31,13 @@ public class Main extends Application {
 			new AnimationTimer() {
 				@Override
 				public void handle(long now) {
+					gameScreen.getGraphicsContext2D().clearRect(0, 0, 800, 450);
 					gameLogic.updateLogic();
 					gameScreen.drawScreen();
 				}
 			}.start();
+			
+			
 		} catch(Exception e) {
 			e.printStackTrace();
 		}

@@ -5,19 +5,21 @@ import share.IRenderable;
 import share.RenderableHolder;
 
 public class Player extends Sprite implements IRenderable {
-	int shootTick;
-	int imageIndex; // 0 - Not Move, 1 - Up, 2 - Down
+	protected int shootTick;
+	protected int imageIndex; // 0 - Not Move, 1 - Up, 2 - Down
 	
 	// Constructor
 	public Player() {
 		super();
-		shootTick = 30; // 0.5 second
-		super.tick = 0;
-		super.setPosition(75, 225);
+		shootTick = 15; // 0.25 second
+		super.tick = 30;
+		super.setPosition(25, 225);
+		super.width = 75;
+		super.height = 75;
 	}
 	
 	// Method	
-	public boolean shoot() {
+	public boolean canShoot() {
 		if (tick >= shootTick) {
 			tickReset();
 			return true;
@@ -32,6 +34,10 @@ public class Player extends Sprite implements IRenderable {
 	@Override
 	public void draw(GraphicsContext gc) {
 		gc.drawImage(RenderableHolder.playerImages.get(imageIndex), this.getX(), this.getY());
+	}
+	
+	public int getShootTick() {
+		return this.shootTick;
 	}
 
 }
