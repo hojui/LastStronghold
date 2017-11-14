@@ -104,10 +104,11 @@ public class GameLogic {
 		List<IRenderable> toRemove = new ArrayList<>(); // List to-remove elements
 		for (IRenderable bullet : bulletList) {
 			for (IRenderable enemy : enemyList) {
+				// Add bullet to remove list
+				toRemove.add(bullet);
 				if (((Sprite) bullet).intersects((Sprite) enemy) && isSameColor(bullet, enemy)) {
-					// Add to to-remove list
+					// Add enemy to remove list
 					toRemove.add(enemy);
-					toRemove.add(bullet);
 					// Add to dead enemy list
 					deadEnemyList.add(enemy);
 					RenderableHolder.getInstance().addDeadEnemy(enemy);
