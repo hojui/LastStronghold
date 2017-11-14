@@ -72,8 +72,6 @@ public class GameScreen extends Canvas {
 	private void drawEnemys(GraphicsContext gc) {
 		for (IRenderable enemy : RenderableHolder.getInstance().getEnemies())
 			enemy.draw(gc);
-		// for (IRenderable deadEnemy : RenderableHolder.getInstance().getDeadEnemies())
-		// deadEnemy.draw(gc); // TODO Change draw method
 	}
 
 	private void drawBullets(GraphicsContext gc) {

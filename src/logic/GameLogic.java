@@ -228,6 +228,9 @@ public class GameLogic {
 		if (GameScreen.inputs.contains("J") && GameScreen.inputs.contains("U")) {
 			this.secretJuiButton();
 		}
+		if (GameScreen.inputs.contains("M") && GameScreen.inputs.contains("A")) {
+			this.secretMaxButton();
+		}
 	}
 
 	private void updateLevel() {
@@ -285,4 +288,9 @@ public class GameLogic {
 		RenderableHolder.getInstance().removeBullet(toRemove);
 	}
 
+	private void secretMaxButton() {
+		enemyTick = 1;
+		currentEnemySpeed = -2;
+	}
+	
 }
