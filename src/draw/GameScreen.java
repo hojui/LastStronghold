@@ -2,6 +2,8 @@ package draw;
 
 import java.util.ArrayList;
 
+import com.sun.javafx.tk.Toolkit;
+
 import javafx.event.EventHandler;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
@@ -39,7 +41,7 @@ public class GameScreen extends Canvas {
 			}
 		});
 	}
-	
+
 	public void drawScreen() {
 		GraphicsContext gc = this.getGraphicsContext2D();
 		drawField(gc);
@@ -48,39 +50,42 @@ public class GameScreen extends Canvas {
 		drawPlayer(gc);
 		drawStatus(gc);
 	}
-	
+
 	private void drawField(GraphicsContext gc) {
 		field.tickIncrease();
-//		if (field.getTick() > 25) {
-//			field.draw(gc);
-//			field.tickReset();
-//		}
+		// if (field.getTick() > 25) {
+		// field.draw(gc);
+		// field.tickReset();
+		// }
 		field.draw(gc);
 	}
-	
+
 	private void drawEnemys(GraphicsContext gc) {
-		for (IRenderable enemy : RenderableHolder.getInstance().getEnemies()) enemy.draw(gc);
-		//for (IRenderable deadEnemy : RenderableHolder.getInstance().getDeadEnemies()) deadEnemy.draw(gc); // TODO Change draw method
+		for (IRenderable enemy : RenderableHolder.getInstance().getEnemies())
+			enemy.draw(gc);
+		// for (IRenderable deadEnemy : RenderableHolder.getInstance().getDeadEnemies())
+		// deadEnemy.draw(gc); // TODO Change draw method
 	}
-	
+
 	private void drawBullets(GraphicsContext gc) {
-		for (IRenderable bullet : RenderableHolder.getInstance().getBullets()) bullet.draw(gc);
+		for (IRenderable bullet : RenderableHolder.getInstance().getBullets())
+			bullet.draw(gc);
 	}
 
 	private void drawPlayer(GraphicsContext gc) {
 		RenderableHolder.getInstance().getPlayer().draw(gc);
 	}
-	
+
 	private void drawStatus(GraphicsContext gc) {
 		// Set BG
 		gc.setFill(Color.LIGHTGRAY);
 		gc.fillRect(0, 400, 800, 50);
-		
+
 		// Set bullet text
 		gc.setFill(Color.BLACK);
 		gc.setFont(Font.font(30));
 		gc.fillText("Bullet", 17, 436);
-		
+
 		// Set bullet state indicator
 		int bulletState = RenderableHolder.getInstance().getBulletState();
 		if (bulletState == 2) {
@@ -109,6 +114,9 @@ public class GameScreen extends Canvas {
 		// Set score display
 		gc.setFill(Color.BLACK);
 		gc.setFont(Font.font(30));
-		gc.fillText("Score : " + RenderableHolder.getInstance().getScore(), 655, 436);
+		@SuppressWarnings("restriction")
+		double fontWidth = Toolkit.getToolkit().getFontLoader()
+				.computeStringWidth("Score : " + RenderableHolder.getInstance().getScore(), gc.getFont());
+		gc.fillText("Score : " + RenderableHolder.getInstance().getScore(), 800 - fontWidth - 17, 436);
 	}
 }
