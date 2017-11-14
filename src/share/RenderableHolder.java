@@ -9,6 +9,7 @@ public class RenderableHolder {
 	private static final RenderableHolder instance = new RenderableHolder();
 	
 	public static List<IRenderable> enemys;
+	public static List<IRenderable> deadEnemyList;
 	public static List<IRenderable> bullets;
 	
 	public static List<Image> playerImages;
@@ -29,6 +30,7 @@ public class RenderableHolder {
 	
 	public RenderableHolder() {
 		enemys = new ArrayList<>();
+		deadEnemyList = new ArrayList<>();
 		bullets = new ArrayList<>();
 		
 		enemyYellowImages = new ArrayList<>();
@@ -79,6 +81,10 @@ public class RenderableHolder {
 	public void addBullet(IRenderable bullet) {
 		this.bullets.add(bullet);
 		System.out.println("Bullet added. Fire in the holeeee");
+	}
+	
+	public void addScore(int score) {
+		this.score += score;
 	}
 
 	public int getScore() {

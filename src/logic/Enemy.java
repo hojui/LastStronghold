@@ -11,5 +11,10 @@ public class Enemy extends Sprite {
 		super.setPosition(posX, posY);
 		super.setVelocity(veloX, 0);
 	}
+	
+	public boolean isOutOfScreen() {
+		if (super.getX() <= 0) return true;
+		return false;
+	}
 
 }

@@ -14,22 +14,22 @@ import share.RenderableHolder;
 public class GameLogic {
 	private Player player;
 	private List<IRenderable> enemyList;
+	private List<IRenderable> deadEnemyList;
 	private List<IRenderable> bulletList;
 	private int bulletState;
 	private int enemyTick;
 	private int currentEnemyTick;
-	private int enemyCount;
 	private int score;
 	
 	public GameLogic() {
 		player = new Player();
 		enemyList = new ArrayList<>();
+		deadEnemyList = new ArrayList<>();
 		bulletList = new ArrayList<>();
 		bulletState = 0;
 		enemyTick = 60;
 		currentEnemyTick = 0;
 		score = 0;
-		enemyCount = 0;
 	}
 	
 	public void addEnemy(IRenderable enemy) {
@@ -43,26 +43,12 @@ public class GameLogic {
 	}
 	
 	public void updateLogic() {
-		if (GameScreen.inputs.contains("UP")) {
-			player.update(0, -7);
-		}
-		if (GameScreen.inputs.contains("DOWN")) {
-			player.update(0, 7);
-		}
-		if (GameScreen.inputs.contains("A")) {
-			fireBullet();
-		}
-		if (GameScreen.inputs.contains("TAB")) {
-			bulletState = (bulletState + 1) % 3;
-		}
-		
+		readInput();
 		updatePosition();
-		isCollided();
-		
-		if (currentEnemyTick++ > enemyTick) {
-			generateEnemy();
-			this.currentEnemyTick = 0;
-		}
+		checkIfEnemyDestroy();
+		if (currentEnemyTick++ > enemyTick) generateEnemy();
+		updateLevel();
+		checkIfEndGame();
 	}
 	
 	private void updatePosition() {
@@ -108,22 +94,23 @@ public class GameLogic {
 		}
 		enemyList.add((IRenderable) enemy);
 		RenderableHolder.getInstance().addEnemy((IRenderable) enemy);
-		enemyCount++;
+		currentEnemyTick = 0;
 	}
 	
-	private void isCollided() {
+	private void checkIfEnemyDestroy() {
 		for (IRenderable bullet : bulletList) {
 			for (IRenderable enemy : enemyList) {
 				if (((Bullet) bullet).intersects((Enemy) enemy)) {
 					bulletList.remove(bullet);
+					RenderableHolder.bullets.remove(bullet);
+					deadEnemyList.add(enemy);
+					RenderableHolder.deadEnemyList.add(enemy);
 					enemyList.remove(enemy);
-					score += 100; // TODO Set score
+					RenderableHolder.enemys.remove(enemy);
+					score += 100;
+					RenderableHolder.getInstance().addScore(100);
+					System.out.println("Score : " + score);
 				}
-			}
-		}
-		for (IRenderable enemy : enemyList) {
-			if (player.intersects((Enemy) enemy)) {
-				endGame();
 			}
 		}
 	}
@@ -153,5 +140,39 @@ public class GameLogic {
 		alert.setContentText("Score : " + this.score);
 		Platform.exit();
 	}
+	
+	private void readInput() {
+		if (GameScreen.inputs.contains("UP")) {
+			player.update(0, -7);
+		}
+		if (GameScreen.inputs.contains("DOWN")) {
+			player.update(0, 7);
+		}
+		if (GameScreen.inputs.contains("A")) {
+			fireBullet();
+		}
+		if (GameScreen.inputs.contains("TAB")) {
+			bulletState = (bulletState + 1) % 3;
+		}
+	}
 
+	private void updateLevel() {
+		if (score > 10000) {
+			enemyTick = 10;
+		} else if (score > 7000) {
+			enemyTick = 30;
+		} else if (score > 5000) {
+			enemyTick = 40;
+		} else if (score > 3000) {
+			enemyTick = 50;
+		}
+	}
+	
+	private void checkIfEndGame() {
+		for (IRenderable enemy : enemyList) {
+			if (player.intersects((Enemy) enemy)) endGame();
+			if (((Enemy) enemy).isOutOfScreen()) endGame();
+		}
+	}
+	
 }
