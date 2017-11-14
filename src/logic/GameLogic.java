@@ -58,7 +58,7 @@ public class GameLogic {
 			tmp.setPosition(tmp.getX() + tmp.velocityX, tmp.getY());
 		}
 		// Update RenderableHolder bullet list position
-		for (IRenderable bullet : RenderableHolder.bullets) {
+		for (IRenderable bullet : RenderableHolder.getInstance().getBullets()) {
 			Bullet tmp = (Bullet) bullet;
 			tmp.setPosition(tmp.getX() + tmp.velocityX, tmp.getY());
 		}
@@ -68,7 +68,7 @@ public class GameLogic {
 			tmp.setPosition(tmp.getX() + tmp.velocityX, tmp.getY());
 		}
 		// Update RenderableHolder enemy list position
-		for (IRenderable enemy : RenderableHolder.enemys) {
+		for (IRenderable enemy : RenderableHolder.getInstance().getEnemies()) {
 			Enemy tmp = (Enemy) enemy;
 			tmp.setPosition(tmp.getX() + tmp.velocityX, tmp.getY());
 		}
@@ -102,11 +102,11 @@ public class GameLogic {
 			for (IRenderable enemy : enemyList) {
 				if (((Bullet) bullet).intersects((Enemy) enemy)) {
 					bulletList.remove(bullet);
-					RenderableHolder.bullets.remove(bullet);
+					RenderableHolder.getInstance().removeBullet(bullet);
 					deadEnemyList.add(enemy);
-					RenderableHolder.deadEnemyList.add(enemy);
+					RenderableHolder.getInstance().addDeadEnemy(enemy);
 					enemyList.remove(enemy);
-					RenderableHolder.enemys.remove(enemy);
+					RenderableHolder.getInstance().removeEnemy(enemy);
 					score += 100;
 					RenderableHolder.getInstance().addScore(100);
 					System.out.println("Score : " + score);
@@ -144,15 +144,18 @@ public class GameLogic {
 	private void readInput() {
 		if (GameScreen.inputs.contains("UP")) {
 			player.update(0, -7);
+			RenderableHolder.getInstance().updatePlayer(0, -7);
 		}
 		if (GameScreen.inputs.contains("DOWN")) {
 			player.update(0, 7);
+			RenderableHolder.getInstance().updatePlayer(0, 7);
 		}
 		if (GameScreen.inputs.contains("A")) {
 			fireBullet();
 		}
 		if (GameScreen.inputs.contains("TAB")) {
 			bulletState = (bulletState + 1) % 3;
+			RenderableHolder.getInstance().setBulletState(bulletState);
 		}
 	}
 

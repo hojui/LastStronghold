@@ -3,8 +3,11 @@ package application;
 import javafx.animation.AnimationTimer;
 import javafx.application.Application;
 import javafx.stage.Stage;
+import logic.GameLogic;
+import share.RenderableHolder;
 import javafx.scene.Group;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import draw.GameScreen;
 
 public class Main extends Application {
@@ -19,17 +22,18 @@ public class Main extends Application {
 			root.getChildren().add(gameScreen);
 			gameScreen.requestFocus();
 			
+			GameLogic gameLogic = new GameLogic();
+			
 			stage.setScene(scene);
 			stage.setTitle("Last Stronghold I");
 			stage.show();
-			
-			new AnimationTimer() {
 
+			new AnimationTimer() {
 				@Override
 				public void handle(long now) {
+					gameLogic.updateLogic();
 					gameScreen.drawScreen();
 				}
-				
 			}.start();
 		} catch(Exception e) {
 			e.printStackTrace();

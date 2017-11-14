@@ -4,13 +4,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javafx.scene.image.Image;
+import logic.Player;
 
 public class RenderableHolder {
 	private static final RenderableHolder instance = new RenderableHolder();
 	
-	public static List<IRenderable> enemys;
-	public static List<IRenderable> deadEnemyList;
-	public static List<IRenderable> bullets;
+	private List<IRenderable> enemies;
+	private List<IRenderable> deadEnemies;
+	private List<IRenderable> bullets;
 	
 	public static List<Image> playerImages;
 	
@@ -24,13 +25,22 @@ public class RenderableHolder {
 	
 	private int score;
 	
+	private Player player;
+	
+	private int bulletState;
+	
 	static {
-		loadResource();
+		try {
+			loadResource();
+		} catch (Exception e) {
+			e.printStackTrace();
+			System.out.println("aslkfnlandg");
+		}
 	}
 	
 	public RenderableHolder() {
-		enemys = new ArrayList<>();
-		deadEnemyList = new ArrayList<>();
+		enemies = new ArrayList<>();
+		deadEnemies = new ArrayList<>();
 		bullets = new ArrayList<>();
 		
 		enemyYellowImages = new ArrayList<>();
@@ -38,6 +48,8 @@ public class RenderableHolder {
 		enemyBlueImages = new ArrayList<>();
 		
 		score = 0;
+		player = new Player();
+		bulletState = 0;
 	}
 
 	public static RenderableHolder getInstance() {
@@ -49,38 +61,58 @@ public class RenderableHolder {
 		
 		// Load player images
 		for (int number = 1; number <= 3; number++) {
-			Image image = new Image(ClassLoader.getSystemResource("file:/res/img/player" + number + ".png").toString(),75,75,false,true);
+			Image image = new Image(ClassLoader.getSystemResource("img/player" + number + ".png").toString(),75,75,false,true);
 			playerImages.add(image);
 		}
 		
 		// Load enemy images
 		for (int number = 1; number <= 7; number++) {
-			Image image = new Image(ClassLoader.getSystemResource("file:/res/img/enemyYellow" + number + ".png").toString(),75,75,false,true);
+			Image image = new Image(ClassLoader.getSystemResource("img/enemyYellow" + number + ".png").toString(),75,75,false,true);
 			enemyYellowImages.add(image);
 		}
 		for (int number = 1; number <= 7; number++) {
-			Image image = new Image(ClassLoader.getSystemResource("file:/res/img/enemyRed" + number + ".png").toString(),75,75,false,true);
+			Image image = new Image(ClassLoader.getSystemResource("img/enemyRed" + number + ".png").toString(),75,75,false,true);
 			enemyRedImages.add(image);
 		}
 		for (int number = 1; number <= 7; number++) {
-			Image image = new Image(ClassLoader.getSystemResource("file:/res/img/enemyBlue" + number + ".png").toString(),75,75,false,true);
+			Image image = new Image(ClassLoader.getSystemResource("img/enemyBlue" + number + ".png").toString(),75,75,false,true);
 			enemyBlueImages.add(image);
 		}
 
 		// Load bullet images
-		bulletYellowImage = new Image(ClassLoader.getSystemResource("file:/res/img/bulletYellow.png").toString(),30,9,false,true);
-		bulletRedImage = new Image(ClassLoader.getSystemResource("file:/res/img/bulletRed.png").toString(),30,9,false,true);
-		bulletBlueImage = new Image(ClassLoader.getSystemResource("file:/res/img/bulletBlue.png").toString(),30,9,false,true);
+		bulletYellowImage = new Image(ClassLoader.getSystemResource("img/bulletYellow.png").toString(),30,9,false,true);
+		bulletRedImage = new Image(ClassLoader.getSystemResource("img/bulletRed.png").toString(),30,9,false,true);
+		bulletBlueImage = new Image(ClassLoader.getSystemResource("img/bulletBlue.png").toString(),30,9,false,true);
 	}
 
 	public void addEnemy(IRenderable enemy) {
-		this.enemys.add(enemy);
+		enemies.add(enemy);
 		System.out.println("Enemy added.");
 	}
 	
+	public void addDeadEnemy(IRenderable deadEnemy) {
+		deadEnemies.add(deadEnemy);
+		System.out.println("Dead enemy added.");
+	}
+	
 	public void addBullet(IRenderable bullet) {
-		this.bullets.add(bullet);
+		bullets.add(bullet);
 		System.out.println("Bullet added. Fire in the holeeee");
+	}
+	
+	public void removeEnemy(IRenderable enemy) {
+		enemies.remove(enemy);
+		System.out.println("Enemy removed.");
+	}
+	
+	public void removeDeadEnemy(IRenderable deadEnemy) {
+		deadEnemies.remove(deadEnemy);
+		System.out.println("Dead enemy removed.");
+	}
+	
+	public void removeBullet(IRenderable bullet) {
+		bullets.remove(bullet);
+		System.out.println("Bullet removed.");
 	}
 	
 	public void addScore(int score) {
@@ -91,8 +123,32 @@ public class RenderableHolder {
 		return score;
 	}
 
-	public void setScore(int score) {
-		this.score = score;
+	public Player getPlayer() {
+		return player;
+	}
+
+	public List<IRenderable> getEnemies() {
+		return enemies;
+	}
+
+	public List<IRenderable> getDeadEnemies() {
+		return deadEnemies;
+	}
+
+	public List<IRenderable> getBullets() {
+		return bullets;
+	}
+	
+	public void updatePlayer(double x, double y) {
+		this.player.setPosition(x, y);
+	}
+
+	public int getBulletState() {
+		return bulletState;
+	}
+
+	public void setBulletState(int bulletState) {
+		this.bulletState = bulletState;
 	}
 	
 }
