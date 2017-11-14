@@ -16,18 +16,13 @@ public class EnemyYellow extends Enemy implements IRenderable {
 
 	// get state of image
 	protected int getState() {
-		if (super.tick == 0) {
+		if (super.tick < 30) {
 			return 0;
-		}
-		if (super.tick < 20) {
-			return 1;
-		} else if (super.tick < 40) {
-			return 2;
 		} else if (super.tick < 60) {
-			return 3;
+			return 1;
 		} else if (super.tick > 60) {
-			super.tick = 1;
-			return 4;
+			super.tickReset();
+			return 0;
 		} else {
 			return 0;
 		}
@@ -36,6 +31,6 @@ public class EnemyYellow extends Enemy implements IRenderable {
 	@Override
 	public void draw(GraphicsContext gc) {
 		// TODO Auto-generated method stub
-		gc.drawImage(RenderableHolder.enemyYellowImages.get(0), super.getX(), super.getY());
+		gc.drawImage(RenderableHolder.enemyYellowImages.get(this.getState()), super.getX(), super.getY());
 	}
 }

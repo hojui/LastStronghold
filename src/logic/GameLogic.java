@@ -70,11 +70,13 @@ public class GameLogic {
 		// Update logic enemy list position
 		for (IRenderable enemy : enemyList) {
 			Enemy tmp = (Enemy) enemy;
+			tmp.tickIncrease();
 			tmp.setPosition(tmp.getX() + tmp.velocityX, tmp.getY());
 		}
 		// Update RenderableHolder enemy list position
 		for (IRenderable enemy : RenderableHolder.getInstance().getEnemies()) {
 			Enemy tmp = (Enemy) enemy;
+			tmp.tickIncrease();
 			tmp.setPosition(tmp.getX() + tmp.velocityX, tmp.getY());
 		}
 	}
