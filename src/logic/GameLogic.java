@@ -99,24 +99,28 @@ public class GameLogic {
 	}
 
 	private void checkIfEnemyDestroy() {
+		List<IRenderable> toRemove = new ArrayList<>(); // List to-remove elements
 		for (IRenderable bullet : bulletList) {
 			for (IRenderable enemy : enemyList) {
-				if (((Sprite) bullet).intersects((Sprite) enemy)) {
-					if (isSameColor(bullet, enemy)) {
-						deadEnemyList.add(enemy);
-						RenderableHolder.getInstance().addDeadEnemy(enemy);
-						enemyList.remove(enemy);
-						RenderableHolder.getInstance().removeEnemy(enemy);
-						score += 100;
-						RenderableHolder.getInstance().addScore(100);
-						System.out.println("Score : " + score);
-					} // TODO Fix remove bullet
-					bulletList.remove(bullet);
-					RenderableHolder.getInstance().removeBullet(bullet);
-
+				if (((Sprite) bullet).intersects((Sprite) enemy) && isSameColor(bullet, enemy)) {
+					// Add to to-remove list
+					toRemove.add(enemy);
+					toRemove.add(bullet);
+					// Add to dead enemy list
+					deadEnemyList.add(enemy);
+					RenderableHolder.getInstance().addDeadEnemy(enemy);
+					// Add score
+					score += 100;
+					RenderableHolder.getInstance().addScore(100);
+					System.out.println("Score : " + score);
 				}
 			}
 		}
+		// Remove to-remove element
+		this.enemyList.removeAll(toRemove);
+		this.bulletList.removeAll(toRemove);
+		RenderableHolder.getInstance().removeEnemy(toRemove);
+		RenderableHolder.getInstance().removeBullet(toRemove);
 	}
 	
 	private boolean isSameColor(IRenderable bullet, IRenderable enemy) {

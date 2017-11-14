@@ -102,8 +102,8 @@ public class RenderableHolder {
 		System.out.println("Bullet added. Fire in the holeeee");
 	}
 	
-	public void removeEnemy(IRenderable enemy) {
-		enemies.remove(enemy);
+	public void removeEnemy(List<IRenderable> bullet) {
+		enemies.removeAll(bullet);
 		System.out.println("Enemy removed.");
 	}
 	
@@ -112,8 +112,8 @@ public class RenderableHolder {
 		System.out.println("Dead enemy removed.");
 	}
 	
-	public void removeBullet(IRenderable bullet) {
-		bullets.remove(bullet);
+	public void removeBullet(List<IRenderable> bullet) {
+		bullets.removeAll(bullet);
 		System.out.println("Bullet removed.");
 	}
 	
