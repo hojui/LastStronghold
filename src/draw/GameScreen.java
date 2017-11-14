@@ -73,23 +73,42 @@ public class GameScreen extends Canvas {
 	
 	private void drawStatus(GraphicsContext gc) {
 		// Set BG
-		gc.setFill(Color.WHITE);
+		gc.setFill(Color.LIGHTGRAY);
 		gc.fillRect(0, 400, 800, 50);
-		// Set bullet state color
-		switch (RenderableHolder.getInstance().getBulletState()) {
-		case 0 :
-			gc.setFill(Color.RED); break;
-		case 1 :
-			gc.setFill(Color.BLUE); break;
-		case 2 : 
-			gc.setFill(Color.YELLOW); break;
-		default :
-			gc.setFill(Color.RED); break;
+		
+		// Set bullet text
+		gc.setFill(Color.BLACK);
+		gc.setFont(Font.font(30));
+		gc.fillText("Bullet", 17, 436);
+		
+		// Set bullet state indicator
+		int bulletState = RenderableHolder.getInstance().getBulletState();
+		if (bulletState == 2) {
+			gc.setFill(Color.RED);
+			gc.fillOval(120, 420, 10, 10);
+			gc.setFill(Color.BLUE);
+			gc.fillOval(150, 420, 10, 10);
+			gc.setFill(Color.YELLOW);
+			gc.fillOval(172.5, 412.5, 25, 25);
+		} else if (bulletState == 1) {
+			gc.setFill(Color.RED);
+			gc.fillOval(120, 420, 10, 10);
+			gc.setFill(Color.BLUE);
+			gc.fillOval(142.5, 412.5, 25, 25);
+			gc.setFill(Color.YELLOW);
+			gc.fillOval(180, 420, 10, 10);
+		} else {
+			gc.setFill(Color.RED);
+			gc.fillOval(112.5, 412.5, 25, 25);
+			gc.setFill(Color.BLUE);
+			gc.fillOval(150, 420, 10, 10);
+			gc.setFill(Color.YELLOW);
+			gc.fillOval(180, 420, 10, 10);
 		}
-		gc.fillRect(30, 410, 60, 30);
+
 		// Set score display
 		gc.setFill(Color.BLACK);
-		gc.setFont(Font.font(20));
-		gc.fillText("Score : " + RenderableHolder.getInstance().getScore(), 120, 440);
+		gc.setFont(Font.font(30));
+		gc.fillText("Score : " + RenderableHolder.getInstance().getScore(), 655, 436);
 	}
 }

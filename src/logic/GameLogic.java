@@ -179,7 +179,6 @@ public class GameLogic {
 	}
 
 	private void readInput() {
-		System.out.println(GameScreen.inputs);
 		if (!GameScreen.inputs.contains("UP") && !GameScreen.inputs.contains("DOWN")) {
 			this.player.setImageIndex(0);
 			RenderableHolder.getInstance().updateImagePlayer(0);
@@ -196,13 +195,18 @@ public class GameLogic {
 			RenderableHolder.getInstance().updateImagePlayer(2);
 			RenderableHolder.getInstance().updatePlayer(0, 7);
 		}
-		if (GameScreen.inputs.contains("A")) {
+		if (GameScreen.inputs.contains("X")) {
 			fireBullet();
 		}
-		if (GameScreen.inputs.contains("TAB")) {
+		if (GameScreen.inputs.contains("C")) {
 			bulletState = (bulletState + 1) % 3;
 			RenderableHolder.getInstance().setBulletState(bulletState);
-			GameScreen.inputs.remove("TAB");
+			GameScreen.inputs.remove("C");
+		}
+		if (GameScreen.inputs.contains("Z")) {
+			bulletState = (bulletState == 0) ? 2 : (bulletState - 1) % 3;
+			RenderableHolder.getInstance().setBulletState(bulletState);
+			GameScreen.inputs.remove("Z");
 		}
 	}
 
