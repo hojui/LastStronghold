@@ -82,24 +82,25 @@ public class GameLogic {
 			tmp.setPosition(tmp.getX() + tmp.velocityX, tmp.getY());
 		}
 	}
-	
+
 	private void checkBulletOutOfScreen() {
 		List<IRenderable> toRemove = new ArrayList<>();
 		for (IRenderable bullet : bulletList) {
-			if (((Bullet) bullet).isOutOfScreen()) toRemove.add(bullet);
+			if (((Bullet) bullet).isOutOfScreen())
+				toRemove.add(bullet);
 		}
 		bulletList.removeAll(toRemove);
 		RenderableHolder.getInstance().removeBullet(toRemove);
 	}
-	
+
 	private void checkPlayerOutOfScreen() {
-		if (this.player.getY() < 0) {
+		if (this.player.getY() < -40) {
 			this.player.setPosition(25, 400);
 			RenderableHolder.getInstance().setPlayerPosition(25, 400);
 		}
 		if (this.player.getY() > 400) {
-			this.player.setPosition(25, 0);
-			RenderableHolder.getInstance().setPlayerPosition(25, 0);
+			this.player.setPosition(25, -40);
+			RenderableHolder.getInstance().setPlayerPosition(25, -40);
 		}
 	}
 
@@ -126,12 +127,11 @@ public class GameLogic {
 		currentEnemyTick = 0;
 	}
 
-	
 	private void checkIfEnemyDestroy() {
 		List<IRenderable> toRemove = new ArrayList<>(); // List to-remove elements
 		for (IRenderable bullet : bulletList) {
 			for (IRenderable enemy : enemyList) {
-				if (((Sprite) bullet).intersects((Sprite) enemy)){
+				if (((Sprite) bullet).intersects((Sprite) enemy)) {
 					if (isSameColor(bullet, enemy)) {
 						// Add enemy to remove list
 						toRemove.add(enemy);
@@ -154,12 +154,14 @@ public class GameLogic {
 		RenderableHolder.getInstance().removeEnemy(toRemove);
 		RenderableHolder.getInstance().removeBullet(toRemove);
 	}
-	
-	
+
 	private boolean isSameColor(IRenderable bullet, IRenderable enemy) {
-		if (bullet instanceof BulletRed && enemy instanceof EnemyRed) return true;
-		if (bullet instanceof BulletBlue && enemy instanceof EnemyBlue) return true;
-		if (bullet instanceof BulletYellow && enemy instanceof EnemyYellow) return true;
+		if (bullet instanceof BulletRed && enemy instanceof EnemyRed)
+			return true;
+		if (bullet instanceof BulletBlue && enemy instanceof EnemyBlue)
+			return true;
+		if (bullet instanceof BulletYellow && enemy instanceof EnemyYellow)
+			return true;
 		return false;
 	}
 
@@ -223,6 +225,9 @@ public class GameLogic {
 			RenderableHolder.getInstance().setBulletState(bulletState);
 			GameScreen.inputs.remove("Z");
 		}
+		if (GameScreen.inputs.contains("J") && GameScreen.inputs.contains("U")) {
+			this.secretJuiButton();
+		}
 	}
 
 	private void updateLevel() {
@@ -249,7 +254,7 @@ public class GameLogic {
 				endGame();
 		}
 	}
-	
+
 	private void updateDeadEnemy() {
 		List<IRenderable> toRemove = new ArrayList<>();
 		for (IRenderable enemy : this.deadEnemyList) {
@@ -261,7 +266,23 @@ public class GameLogic {
 		}
 		this.deadEnemyList.removeAll(toRemove);
 		RenderableHolder.getInstance().removeDeadEnemy(toRemove);
-		
+
+	}
+
+	private void secretJuiButton() {
+		List<IRenderable> toRemove = new ArrayList<>();
+		for (IRenderable enemy : enemyList) {
+			toRemove.add(enemy);
+			deadEnemyList.add(enemy);
+			RenderableHolder.getInstance().addDeadEnemy(enemy);
+			score += 100;
+			RenderableHolder.getInstance().addScore(100);
+			System.out.println("Score : " + score);
+		}
+		this.enemyList.removeAll(toRemove);
+		this.bulletList.removeAll(toRemove);
+		RenderableHolder.getInstance().removeEnemy(toRemove);
+		RenderableHolder.getInstance().removeBullet(toRemove);
 	}
 
 }
