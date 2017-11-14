@@ -48,6 +48,7 @@ public class GameLogic {
 		player.tickIncrease();
 		readInput();
 		updatePosition();
+		updateDeadEnemy();
 		checkBulletOutOfScreen();
 		checkPlayerOutOfScreen();
 		checkIfEnemyDestroy();
@@ -247,6 +248,20 @@ public class GameLogic {
 			if (((Enemy) enemy).isOutOfScreen())
 				endGame();
 		}
+	}
+	
+	private void updateDeadEnemy() {
+		List<IRenderable> toRemove = new ArrayList<>();
+		for (IRenderable enemy : this.deadEnemyList) {
+			Enemy tmp = (Enemy) enemy;
+			tmp.tickDeadIncrease();
+			if (tmp.getTickDead() > 15) {
+				toRemove.add((IRenderable) tmp);
+			}
+		}
+		this.deadEnemyList.removeAll(toRemove);
+		RenderableHolder.getInstance().removeDeadEnemy(toRemove);
+		
 	}
 
 }

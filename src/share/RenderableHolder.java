@@ -111,6 +111,10 @@ public class RenderableHolder {
 		bullets.removeAll(bullet);
 	}
 	
+	public void removeDeadEnemy(List<IRenderable> deadEnemy) {
+		this.deadEnemies.removeAll(deadEnemy);
+	}
+	
 	public void addScore(int score) {
 		this.score += score;
 	}

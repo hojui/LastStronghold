@@ -10,6 +10,10 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
+import logic.Enemy;
+import logic.EnemyBlue;
+import logic.EnemyRed;
+import logic.EnemyYellow;
 import logic.Field;
 import share.IRenderable;
 import share.RenderableHolder;
@@ -53,6 +57,7 @@ public class GameScreen extends Canvas {
 		drawBullets(gc);
 		drawPlayer(gc);
 		drawStatus(gc);
+		drawDeadEnemy(gc);
 	}
 
 	private void drawField(GraphicsContext gc) {
@@ -122,5 +127,22 @@ public class GameScreen extends Canvas {
 		double fontWidth = Toolkit.getToolkit().getFontLoader()
 				.computeStringWidth("Score : " + RenderableHolder.getInstance().getScore(), gc.getFont());
 		gc.fillText("Score : " + RenderableHolder.getInstance().getScore(), 800 - fontWidth - 17, 436);
+	}
+	
+	private void drawDeadEnemy(GraphicsContext gc) {
+		for (IRenderable enemy : RenderableHolder.getInstance().getDeadEnemies()) {
+			Enemy tmp = (Enemy) enemy;
+			tmp.tickDeadIncrease();
+			
+			if (tmp instanceof EnemyRed) {
+				((EnemyRed)tmp).drawDeadEnemy(gc);
+			}
+			else if (tmp instanceof EnemyBlue) {
+				((EnemyBlue) tmp).drawDeadEnemy(gc);
+			}
+			else if (tmp instanceof EnemyYellow) {
+				((EnemyYellow) tmp).drawDeadEnemy(gc);
+			}
+		}
 	}
 }

@@ -33,4 +33,18 @@ public class EnemyYellow extends Enemy implements IRenderable {
 		// TODO Auto-generated method stub
 		gc.drawImage(RenderableHolder.enemyYellowImages.get(this.getState()), super.getX(), super.getY());
 	}
+	
+	public void drawDeadEnemy(GraphicsContext gc) {
+		if (super.tickDead < 3) {
+			gc.drawImage(RenderableHolder.enemyYellowImages.get(2), super.getX(), super.getY());
+		} else if (super.tickDead < 6) {
+			gc.drawImage(RenderableHolder.enemyYellowImages.get(3), super.getX(), super.getY());
+		} else if (super.tickDead < 9) {
+			gc.drawImage(RenderableHolder.enemyYellowImages.get(4), super.getX(), super.getY());
+		} else if (super.tickDead < 12) {
+			gc.drawImage(RenderableHolder.enemyYellowImages.get(5), super.getX(), super.getY());
+		} else if (super.tickDead < 15) {
+			gc.drawImage(RenderableHolder.enemyYellowImages.get(6), super.getX(), super.getY());
+		}
+	}
 }
