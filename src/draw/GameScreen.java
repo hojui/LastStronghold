@@ -55,7 +55,6 @@ public class GameScreen extends Canvas {
 		drawStatus(gc);
 	}
 
-	// Private method
 	private void drawField(GraphicsContext gc) {
 		field.tickIncrease();
 		// if (field.getTick() > 25) {
