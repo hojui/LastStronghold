@@ -86,6 +86,15 @@ public class RenderableHolder {
 		bulletRedImage = new Image(ClassLoader.getSystemResource("img/bulletRed.png").toString(),30,9,false,true);
 		bulletBlueImage = new Image(ClassLoader.getSystemResource("img/bulletBlue.png").toString(),30,9,false,true);
 	}
+	
+	public void resetGame() {
+		this.enemies.clear();
+		this.deadEnemies.clear();
+		this.bullets.clear();
+		this.score = 0;
+		this.player = new Player();
+		this.bulletState = 0;
+	}
 
 	public void addEnemy(IRenderable enemy) {
 		enemies.add(enemy);
