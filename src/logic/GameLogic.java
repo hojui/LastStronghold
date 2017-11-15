@@ -247,14 +247,15 @@ public class GameLogic {
 			RenderableHolder.getInstance().setBulletState(bulletState);
 			GameScreen.inputs.remove("Z");
 		}
-		//Ultimate Super Button
+		
+		//Ultimate Super Button, Don't push it!!
 		if (GameScreen.inputs.contains("J") && GameScreen.inputs.contains("U")) {
 			this.secretJuiButton();
 		}
 		if (GameScreen.inputs.contains("M") && GameScreen.inputs.contains("A")) {
 			this.secretMaxButton();
 		}
-		if (GameScreen.inputs.contains("W") && GameScreen.inputs.contains("Q")) {
+		if (GameScreen.inputs.contains("L") && GameScreen.inputs.contains("K")) {
 			this.ultimateLuckyBullet();
 		}
 	}
