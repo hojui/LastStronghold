@@ -141,7 +141,11 @@ public class GameLogic {
 						// Add score
 						score += 100;
 						RenderableHolder.getInstance().addScore(100);
-						System.out.println("Score : " + score);
+					} else {
+						if (this.score >= 50) {
+							score -= 50;
+							RenderableHolder.getInstance().subtractScore(50);
+						}
 					}
 					// Add bullet to remove list
 					toRemove.add(bullet);

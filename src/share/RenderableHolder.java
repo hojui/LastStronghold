@@ -128,6 +128,10 @@ public class RenderableHolder {
 	public void addScore(int score) {
 		this.score += score;
 	}
+	
+	public void subtractScore(int score) {
+		this.score -= score;
+	}
 
 	public int getScore() {
 		return score;

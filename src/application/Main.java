@@ -3,7 +3,6 @@ package application;
 import javafx.application.Application;
 import javafx.stage.Stage;
 import window.SceneManager;
-import javafx.scene.Scene;
 
 public class Main extends Application {
 	
