@@ -186,6 +186,28 @@ public class GameLogic {
 			RenderableHolder.getInstance().addBullet((IRenderable) bullet);
 		}
 	}
+	
+	private void ultimateLuckyBullet() {
+		if (player.canShoot()) {
+			Bullet bullet;
+			switch ((int) (Math.random()*3 + 1)) {
+			case 1:
+				bullet = new BulletRed(player.getX() + 75, Math.random()*400 + 1, 12);
+				break;
+			case 2:
+				bullet = new BulletBlue(player.getX() + 75, Math.random()*400 + 1, 12);
+				break;
+			case 3:
+				bullet = new BulletYellow(player.getX() + 75, Math.random()*400 + 1, 12);
+				break;
+			default:
+				bullet = new BulletRed(player.getX() + 75, Math.random()*400 + 1, 12);
+				break;
+			}
+			addBullet((IRenderable) bullet);
+			RenderableHolder.getInstance().addBullet((IRenderable) bullet);
+		}
+	}
 
 	private void endGame() {
 		// TODO fix end game alert
@@ -225,11 +247,16 @@ public class GameLogic {
 			RenderableHolder.getInstance().setBulletState(bulletState);
 			GameScreen.inputs.remove("Z");
 		}
+		
+		//Ultimate Super Button, Don't push it!!
 		if (GameScreen.inputs.contains("J") && GameScreen.inputs.contains("U")) {
 			this.secretJuiButton();
 		}
 		if (GameScreen.inputs.contains("M") && GameScreen.inputs.contains("A")) {
 			this.secretMaxButton();
+		}
+		if (GameScreen.inputs.contains("L") && GameScreen.inputs.contains("K")) {
+			this.ultimateLuckyBullet();
 		}
 	}
 

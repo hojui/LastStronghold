@@ -1,3 +1,4 @@
+
 package share;
 
 import java.util.ArrayList;
@@ -34,14 +35,24 @@ public class RenderableHolder {
 			loadResource();
 		} catch (Exception e) {
 			e.printStackTrace();
+			System.out.println("aslkfnlandg");
 		}
 	}
 	
 	public RenderableHolder() {
+		enemies = new ArrayList<>();
+		deadEnemies = new ArrayList<>();
+		bullets = new ArrayList<>();
+		
 		enemyYellowImages = new ArrayList<>();
 		enemyRedImages = new ArrayList<>();
-		enemyBlueImages = new ArrayList<>();	
+		enemyBlueImages = new ArrayList<>();
+		
 		playerImages = new ArrayList<>();
+		
+		score = 0;
+		player = new Player();
+		bulletState = 0;
 	}
 
 	public static RenderableHolder getInstance() {
@@ -78,12 +89,12 @@ public class RenderableHolder {
 	}
 	
 	public void newGame() {
-		score = 0;
-		player = new Player();
-		bulletState = 0;
-		enemies = new ArrayList<>();
-		deadEnemies = new ArrayList<>();
-		bullets = new ArrayList<>();
+		this.enemies.clear();
+		this.deadEnemies.clear();
+		this.bullets.clear();
+		this.score = 0;
+		this.player = new Player();
+		this.bulletState = 0;
 	}
 
 	public void addEnemy(IRenderable enemy) {

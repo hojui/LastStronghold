@@ -1,19 +1,22 @@
 package application;
-	
+
 import javafx.application.Application;
 import javafx.stage.Stage;
 import window.SceneManager;
+import javafx.scene.Scene;
 
 public class Main extends Application {
+	
+	public static int gameState = 0;
+	
 	@Override
 	public void start(Stage stage) {
 		try {
-			
 			SceneManager.initialize(stage);
 			SceneManager.goToMainMenu();
-			stage.setTitle("Last Stronghold I beta 0.0347");
+			stage.setTitle("Last Stronghold I");
 			stage.centerOnScreen();
-			
+	
 		} catch(Exception e) {
 			e.printStackTrace();
 		}
