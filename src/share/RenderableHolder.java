@@ -34,24 +34,14 @@ public class RenderableHolder {
 			loadResource();
 		} catch (Exception e) {
 			e.printStackTrace();
-			System.out.println("aslkfnlandg");
 		}
 	}
 	
 	public RenderableHolder() {
-		enemies = new ArrayList<>();
-		deadEnemies = new ArrayList<>();
-		bullets = new ArrayList<>();
-		
 		enemyYellowImages = new ArrayList<>();
 		enemyRedImages = new ArrayList<>();
-		enemyBlueImages = new ArrayList<>();
-		
+		enemyBlueImages = new ArrayList<>();	
 		playerImages = new ArrayList<>();
-		
-		score = 0;
-		player = new Player();
-		bulletState = 0;
 	}
 
 	public static RenderableHolder getInstance() {
@@ -85,6 +75,15 @@ public class RenderableHolder {
 		bulletYellowImage = new Image(ClassLoader.getSystemResource("img/bulletYellow.png").toString(),30,9,false,true);
 		bulletRedImage = new Image(ClassLoader.getSystemResource("img/bulletRed.png").toString(),30,9,false,true);
 		bulletBlueImage = new Image(ClassLoader.getSystemResource("img/bulletBlue.png").toString(),30,9,false,true);
+	}
+	
+	public void newGame() {
+		score = 0;
+		player = new Player();
+		bulletState = 0;
+		enemies = new ArrayList<>();
+		deadEnemies = new ArrayList<>();
+		bullets = new ArrayList<>();
 	}
 
 	public void addEnemy(IRenderable enemy) {
