@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import draw.GameScreen;
+import game.GameMain;
 import javafx.application.Platform;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
@@ -215,10 +216,10 @@ public class GameLogic {
 
 	private void endGame() {
 		// TODO fix end game alert
-		Alert alert = new Alert(AlertType.CONFIRMATION, "GAME OVER", ButtonType.OK);
-		alert.setContentText("Score : " + this.score);
-		alert.showAndWait();
-		Platform.exit();
+//		Alert alert = new Alert(AlertType.CONFIRMATION, "GAME OVER", ButtonType.OK);
+//		alert.setContentText("Score : " + this.score);
+//		alert.showAndWait();
+		GameMain.goToResult();
 	}
 
 	private void readInput() {

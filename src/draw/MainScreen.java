@@ -18,6 +18,7 @@ import window.SceneManager;
 public class MainScreen extends Canvas {
 	
 	private Field field = new Field();
+	private AnimationTimer timer;
 	
 	// Constructor
 	public MainScreen() {
@@ -26,12 +27,13 @@ public class MainScreen extends Canvas {
 		GraphicsContext gc = this.getGraphicsContext2D();
 		gc.setFill(Color.BLACK);
 		gc.fillRect(0, 0, SceneManager.SCENE_WIDTH, SceneManager.SCENE_HEIGHT);
-		new AnimationTimer() {
+		timer = new AnimationTimer() {
 			@Override
 			public void handle(long now) {
 				drawScreen();
 			}
-		}.start();
+		};
+		timer.start();
 	}
 
 	public void drawScreen() {
@@ -54,7 +56,10 @@ public class MainScreen extends Canvas {
 	private void addEventHandler() {
 		this.setOnKeyPressed(new EventHandler<KeyEvent>() {
 			public void handle(KeyEvent e) {
-				if (e.getCode() == KeyCode.ENTER) GameMain.newGame();
+				if (e.getCode() == KeyCode.ENTER) {
+					timer.stop();
+					GameMain.newGame();
+				}
 				else if (e.getCode() == KeyCode.ESCAPE) Platform.exit();
 			}
 		});
