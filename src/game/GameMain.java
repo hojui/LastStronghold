@@ -28,7 +28,7 @@ public class GameMain {
 						gameScreen.getGraphicsContext2D().clearRect(0, 0, SceneManager.SCENE_WIDTH, SceneManager.SCENE_HEIGHT);
 						gameLogic.updateLogic();
 						gameScreen.drawScreen();
-						Thread.sleep(17);
+						Thread.sleep(20);
 					} catch (InterruptedException e) {
 						e.printStackTrace();
 					}
