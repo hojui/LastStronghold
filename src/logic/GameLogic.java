@@ -174,16 +174,16 @@ public class GameLogic {
 			Bullet bullet;
 			switch (bulletState) {
 			case 0:
-				bullet = new BulletRed(player.getX() + 75, player.getY() + 37.5, 12.15);
+				bullet = new BulletRed(player.getX() + 75, player.getY() + 37.5, 13.15);
 				break;
 			case 1:
-				bullet = new BulletBlue(player.getX() + 75, player.getY() + 37.5, 12.15);
+				bullet = new BulletBlue(player.getX() + 75, player.getY() + 37.5, 13.15);
 				break;
 			case 2:
-				bullet = new BulletYellow(player.getX() + 75, player.getY() + 37.5, 12.15);
+				bullet = new BulletYellow(player.getX() + 75, player.getY() + 37.5, 13.15);
 				break;
 			default:
-				bullet = new BulletRed(player.getX() + 75, player.getY() + 37.5, 12.15);
+				bullet = new BulletRed(player.getX() + 75, player.getY() + 37.5, 13.15);
 				break;
 			}
 			addBullet((IRenderable) bullet);
@@ -201,16 +201,16 @@ public class GameLogic {
 			RenderableHolder.getInstance().updateImagePlayer(0);
 		}
 		if (GameScreen.inputs.contains("UP")) {
-			player.update(0, -8);
+			player.update(0, -9);
 			player.setImageIndex(1);
 			RenderableHolder.getInstance().updateImagePlayer(1);
-			RenderableHolder.getInstance().updatePlayer(0, -8);
+			RenderableHolder.getInstance().updatePlayer(0, -9);
 		}
 		if (GameScreen.inputs.contains("DOWN")) {
-			player.update(0, 8);
+			player.update(0, 9);
 			player.setImageIndex(2);
 			RenderableHolder.getInstance().updateImagePlayer(2);
-			RenderableHolder.getInstance().updatePlayer(0, 8);
+			RenderableHolder.getInstance().updatePlayer(0, 9);
 		}
 		if (GameScreen.inputs.contains("X")) {
 			fireBullet();
