@@ -189,6 +189,7 @@ public class GameLogic {
 			}
 			addBullet((IRenderable) bullet);
 			RenderableHolder.getInstance().addBullet((IRenderable) bullet);
+			RenderableHolder.getInstance().playShootSound();
 		}
 	}
 	
@@ -211,6 +212,7 @@ public class GameLogic {
 			}
 			addBullet((IRenderable) bullet);
 			RenderableHolder.getInstance().addBullet((IRenderable) bullet);
+			RenderableHolder.getInstance().playShootSound();
 		}
 	}
 

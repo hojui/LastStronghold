@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javafx.scene.image.Image;
+import javafx.scene.media.AudioClip;
 import logic.Player;
 
 public class RenderableHolder {
@@ -24,11 +25,15 @@ public class RenderableHolder {
 	public static Image bulletRedImage;
 	public static Image bulletBlueImage;
 	
+	private static AudioClip shootSound;
+	
 	private int score;
 	
 	private Player player;
 	
 	private int bulletState;
+	
+	//--------------------------------------------------------------------
 	
 	static {
 		try {
@@ -58,10 +63,10 @@ public class RenderableHolder {
 	public static RenderableHolder getInstance() {
 		return instance;
 	}
+	
+	//--------------------------------------------------------------------
 
-	public static void loadResource() {
-		// TODO set image name and location
-		
+	public static void loadResource() {	
 		// Load player images
 		for (int number = 1; number <= 3; number++) {
 			Image image = new Image(ClassLoader.getSystemResource("img/player" + number + ".png").toString(),75,75,false,true);
@@ -86,7 +91,12 @@ public class RenderableHolder {
 		bulletYellowImage = new Image(ClassLoader.getSystemResource("img/bulletYellow.png").toString(),30,9,false,true);
 		bulletRedImage = new Image(ClassLoader.getSystemResource("img/bulletRed.png").toString(),30,9,false,true);
 		bulletBlueImage = new Image(ClassLoader.getSystemResource("img/bulletBlue.png").toString(),30,9,false,true);
+	
+		// Load sound
+		shootSound = new AudioClip(ClassLoader.getSystemResource("sound/shootSound.wav").toString());
 	}
+	
+	//--------------------------------------------------------------------
 	
 	public void newGame() {
 		this.enemies.clear();
@@ -132,7 +142,21 @@ public class RenderableHolder {
 	public void subtractScore(int score) {
 		this.score -= score;
 	}
-
+	
+	public void updatePlayer(double x, double y) {
+		this.player.update(x, y);
+	}
+	
+	public void updateImagePlayer(int i) {
+		this.player.setImageIndex(i);
+	}
+	
+	public void playShootSound() {
+		RenderableHolder.shootSound.play();
+	}
+	
+	//--------------------------------------------------------------------
+	
 	public int getScore() {
 		return score;
 	}
@@ -152,15 +176,7 @@ public class RenderableHolder {
 	public List<IRenderable> getBullets() {
 		return bullets;
 	}
-	
-	public void updatePlayer(double x, double y) {
-		this.player.update(x, y);
-	}
-	
-	public void updateImagePlayer(int i) {
-		this.player.setImageIndex(i);
-	}
-	
+
 	public void setPlayerPosition(double x,double y) {
 		this.player.setPosition(x, y);
 	}
