@@ -25,8 +25,8 @@ public class GameMain {
 				isGameRunning = true;
 				while (isGameRunning) {
 					try {
-						if (!RenderableHolder.getInstance().getShootSound().isPlaying()) {
-							RenderableHolder.getInstance().playShootSound();
+						if (!RenderableHolder.getInstance().getBGMSound().isPlaying()) {
+							RenderableHolder.getInstance().playBGMSound();
 						}
 						gameScreen.getGraphicsContext2D().clearRect(0, 0, SceneManager.SCENE_WIDTH, SceneManager.SCENE_HEIGHT);
 						gameLogic.updateLogic();
