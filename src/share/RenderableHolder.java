@@ -27,6 +27,9 @@ public class RenderableHolder {
 	public static Image bulletBlueImage;
 	
 	private static AudioClip shootSound;
+	private static AudioClip enemyDeadSound;
+	private static AudioClip enemyNotDeadSound;
+	private static AudioClip changeBulletSound;
 	
 	private int score;
 	
@@ -95,6 +98,9 @@ public class RenderableHolder {
 	
 		// Load sound
 		shootSound = new AudioClip(ClassLoader.getSystemResource("sound/shootSound.wav").toString());
+		enemyDeadSound = new AudioClip(ClassLoader.getSystemResource("sound/enemyDeadSound.wav").toString());
+		enemyNotDeadSound = new AudioClip(ClassLoader.getSystemResource("sound/enemyNotDeadSound.wav").toString());
+		changeBulletSound = new AudioClip(ClassLoader.getSystemResource("sound/changeBulletSound.wav").toString());
 	}
 	
 	//--------------------------------------------------------------------
@@ -154,7 +160,21 @@ public class RenderableHolder {
 	}
 	
 	public void playShootSound() {
+		shootSound.setVolume(0.6);
 		RenderableHolder.shootSound.play();
+	}
+	
+	public void playEnemyDeadSound() {
+		RenderableHolder.enemyDeadSound.play();
+	}
+	
+	public void playEnemyNotDeadSound() {
+		RenderableHolder.enemyNotDeadSound.play();
+	}
+	
+	public void playChangeBulletSound() {
+		changeBulletSound.setVolume(0.6);
+		RenderableHolder.changeBulletSound.play();
 	}
 	
 	//--------------------------------------------------------------------

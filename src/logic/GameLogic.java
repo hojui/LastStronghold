@@ -130,15 +130,17 @@ public class GameLogic {
 			for (IRenderable enemy : enemyList) {
 				if (((Sprite) bullet).intersects((Sprite) enemy)) {
 					if (isSameColor(bullet, enemy)) {
+						RenderableHolder.getInstance().playEnemyDeadSound();
 						// Add enemy to remove list
 						toRemove.add(enemy);
 						// Add to dead enemy list
 						deadEnemyList.add(enemy);
-						RenderableHolder.getInstance().addDeadEnemy(enemy);
+						RenderableHolder.getInstance().addDeadEnemy(enemy);	
 						// Add score
 						score += 100;
 						RenderableHolder.getInstance().addScore(100);
 					} else {
+						RenderableHolder.getInstance().playEnemyNotDeadSound();
 						if (this.score >= 50) {
 							score -= 50;
 							RenderableHolder.getInstance().subtractScore(50);
@@ -168,6 +170,7 @@ public class GameLogic {
 
 	private void fireBullet() {
 		if (player.canShoot()) {
+			RenderableHolder.getInstance().playShootSound();
 			Bullet bullet;
 			switch (bulletState) {
 			case 0:
@@ -185,30 +188,6 @@ public class GameLogic {
 			}
 			addBullet((IRenderable) bullet);
 			RenderableHolder.getInstance().addBullet((IRenderable) bullet);
-			RenderableHolder.getInstance().playShootSound();
-		}
-	}
-	
-	private void ultimateLuckyBullet() {
-		if (player.canShoot()) {
-			Bullet bullet;
-			switch ((int) (Math.random()*3 + 1)) {
-			case 1:
-				bullet = new BulletRed(player.getX() + 75, Math.random()*400 + 1, 12.15);
-				break;
-			case 2:
-				bullet = new BulletBlue(player.getX() + 75, Math.random()*400 + 1, 12.15);
-				break;
-			case 3:
-				bullet = new BulletYellow(player.getX() + 75, Math.random()*400 + 1, 12.15);
-				break;
-			default:
-				bullet = new BulletRed(player.getX() + 75, Math.random()*400 + 1, 12.15);
-				break;
-			}
-			addBullet((IRenderable) bullet);
-			RenderableHolder.getInstance().addBullet((IRenderable) bullet);
-			RenderableHolder.getInstance().playShootSound();
 		}
 	}
 
@@ -237,11 +216,13 @@ public class GameLogic {
 			fireBullet();
 		}
 		if (GameScreen.inputs.contains("C")) {
+			RenderableHolder.getInstance().playChangeBulletSound();
 			bulletState = (bulletState + 1) % 3;
 			RenderableHolder.getInstance().setBulletState(bulletState);
 			GameScreen.inputs.remove("C");
 		}
 		if (GameScreen.inputs.contains("Z")) {
+			RenderableHolder.getInstance().playChangeBulletSound();
 			bulletState = (bulletState == 0) ? 2 : (bulletState - 1) % 3;
 			RenderableHolder.getInstance().setBulletState(bulletState);
 			GameScreen.inputs.remove("Z");
@@ -306,7 +287,6 @@ public class GameLogic {
 			RenderableHolder.getInstance().addDeadEnemy(enemy);
 			score += 100;
 			RenderableHolder.getInstance().addScore(100);
-			System.out.println("Score : " + score);
 		}
 		this.enemyList.removeAll(toRemove);
 		this.bulletList.removeAll(toRemove);
@@ -317,6 +297,29 @@ public class GameLogic {
 	private void secretMaxButton() {
 		enemyTick = 1;
 		currentEnemySpeed = -2;
+	}
+	
+	private void ultimateLuckyBullet() {
+		if (player.canShoot()) {
+			Bullet bullet;
+			switch ((int) (Math.random()*3 + 1)) {
+			case 1:
+				bullet = new BulletRed(player.getX() + 75, Math.random()*400 + 1, 12.15);
+				break;
+			case 2:
+				bullet = new BulletBlue(player.getX() + 75, Math.random()*400 + 1, 12.15);
+				break;
+			case 3:
+				bullet = new BulletYellow(player.getX() + 75, Math.random()*400 + 1, 12.15);
+				break;
+			default:
+				bullet = new BulletRed(player.getX() + 75, Math.random()*400 + 1, 12.15);
+				break;
+			}
+			addBullet((IRenderable) bullet);
+			RenderableHolder.getInstance().addBullet((IRenderable) bullet);
+			RenderableHolder.getInstance().playShootSound();
+		}
 	}
 	
 }
