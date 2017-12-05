@@ -32,7 +32,7 @@ public class GameLogic {
 		enemyTick = 60;
 		currentEnemyTick = 0;
 		score = 0;
-		currentEnemySpeed = -1;
+		currentEnemySpeed = -1.15;
 	}
 
 	public void addEnemy(IRenderable enemy) {
@@ -175,16 +175,16 @@ public class GameLogic {
 			Bullet bullet;
 			switch (bulletState) {
 			case 0:
-				bullet = new BulletRed(player.getX() + 75, player.getY() + 37.5, 12);
+				bullet = new BulletRed(player.getX() + 75, player.getY() + 37.5, 12.15);
 				break;
 			case 1:
-				bullet = new BulletBlue(player.getX() + 75, player.getY() + 37.5, 12);
+				bullet = new BulletBlue(player.getX() + 75, player.getY() + 37.5, 12.15);
 				break;
 			case 2:
-				bullet = new BulletYellow(player.getX() + 75, player.getY() + 37.5, 12);
+				bullet = new BulletYellow(player.getX() + 75, player.getY() + 37.5, 12.15);
 				break;
 			default:
-				bullet = new BulletRed(player.getX() + 75, player.getY() + 37.5, 12);
+				bullet = new BulletRed(player.getX() + 75, player.getY() + 37.5, 12.15);
 				break;
 			}
 			addBullet((IRenderable) bullet);
@@ -198,16 +198,16 @@ public class GameLogic {
 			Bullet bullet;
 			switch ((int) (Math.random()*3 + 1)) {
 			case 1:
-				bullet = new BulletRed(player.getX() + 75, Math.random()*400 + 1, 12);
+				bullet = new BulletRed(player.getX() + 75, Math.random()*400 + 1, 12.15);
 				break;
 			case 2:
-				bullet = new BulletBlue(player.getX() + 75, Math.random()*400 + 1, 12);
+				bullet = new BulletBlue(player.getX() + 75, Math.random()*400 + 1, 12.15);
 				break;
 			case 3:
-				bullet = new BulletYellow(player.getX() + 75, Math.random()*400 + 1, 12);
+				bullet = new BulletYellow(player.getX() + 75, Math.random()*400 + 1, 12.15);
 				break;
 			default:
-				bullet = new BulletRed(player.getX() + 75, Math.random()*400 + 1, 12);
+				bullet = new BulletRed(player.getX() + 75, Math.random()*400 + 1, 12.15);
 				break;
 			}
 			addBullet((IRenderable) bullet);
@@ -217,11 +217,6 @@ public class GameLogic {
 	}
 
 	private void endGame() {
-		// TODO fix end game alert
-//		Alert alert = new Alert(AlertType.CONFIRMATION, "GAME OVER", ButtonType.OK);
-//		alert.setContentText("Score : " + this.score);
-//		alert.showAndWait();
-		
 		GameMain.goToResult();
 	}
 
@@ -231,16 +226,16 @@ public class GameLogic {
 			RenderableHolder.getInstance().updateImagePlayer(0);
 		}
 		if (GameScreen.inputs.contains("UP")) {
-			player.update(0, -7);
+			player.update(0, -8);
 			player.setImageIndex(1);
 			RenderableHolder.getInstance().updateImagePlayer(1);
-			RenderableHolder.getInstance().updatePlayer(0, -7);
+			RenderableHolder.getInstance().updatePlayer(0, -8);
 		}
 		if (GameScreen.inputs.contains("DOWN")) {
-			player.update(0, 7);
+			player.update(0, 8);
 			player.setImageIndex(2);
 			RenderableHolder.getInstance().updateImagePlayer(2);
-			RenderableHolder.getInstance().updatePlayer(0, 7);
+			RenderableHolder.getInstance().updatePlayer(0, 8);
 		}
 		if (GameScreen.inputs.contains("X")) {
 			fireBullet();
@@ -256,7 +251,7 @@ public class GameLogic {
 			GameScreen.inputs.remove("Z");
 		}
 		
-		//Ultimate Super Button, Don't push it!!
+		// Ultimate Super Button, Don't push it!!
 		if (GameScreen.inputs.contains("J") && GameScreen.inputs.contains("U")) {
 			this.secretJuiButton();
 		}
@@ -271,16 +266,16 @@ public class GameLogic {
 	private void updateLevel() {
 		if (score > 12000) {
 			enemyTick = 10;
-			currentEnemySpeed = -2.0;
+			currentEnemySpeed = -2.15;
 		} else if (score > 8000) {
 			enemyTick = 30;
-			currentEnemySpeed = -1.7;
+			currentEnemySpeed = -1.85;
 		} else if (score > 5000) {
 			enemyTick = 40;
-			currentEnemySpeed = -1.5;
+			currentEnemySpeed = -1.65;
 		} else if (score > 3000) {
 			enemyTick = 50;
-			currentEnemySpeed = -1.2;
+			currentEnemySpeed = -1.35;
 		}
 	}
 

@@ -12,7 +12,6 @@ public class GameMain {
 	private static GameLogic gameLogic;
 	private static GameScreen gameScreen;
 	private static ScoreScreen scoreScreen;
-	//private static AnimationTimer timer;
 	private static Thread gameThread;
 	private static boolean isGameRunning;
 	
@@ -29,7 +28,7 @@ public class GameMain {
 						gameScreen.getGraphicsContext2D().clearRect(0, 0, SceneManager.SCENE_WIDTH, SceneManager.SCENE_HEIGHT);
 						gameLogic.updateLogic();
 						gameScreen.drawScreen();
-						Thread.sleep(16);
+						Thread.sleep(20);
 					} catch (InterruptedException e) {
 						e.printStackTrace();
 					}
