@@ -25,6 +25,9 @@ public class GameMain {
 				isGameRunning = true;
 				while (isGameRunning) {
 					try {
+						if (!RenderableHolder.getInstance().getShootSound().isPlaying()) {
+							RenderableHolder.getInstance().playShootSound();
+						}
 						gameScreen.getGraphicsContext2D().clearRect(0, 0, SceneManager.SCENE_WIDTH, SceneManager.SCENE_HEIGHT);
 						gameLogic.updateLogic();
 						gameScreen.drawScreen();

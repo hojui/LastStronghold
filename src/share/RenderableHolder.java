@@ -157,6 +157,10 @@ public class RenderableHolder {
 		RenderableHolder.shootSound.play();
 	}
 	
+	public void playBGMSound() {
+		//TODO
+	}
+	
 	//--------------------------------------------------------------------
 	
 	public int getScore() {
@@ -189,6 +193,15 @@ public class RenderableHolder {
 
 	public void setBulletState(int bulletState) {
 		this.bulletState = bulletState;
+	}
+	
+	public AudioClip getShootSound() {
+		return this.shootSound;
+	}
+	
+	public AudioClip getBGMSound() {
+		//TODO
+		return this.shootSound;
 	}
 	
 }
