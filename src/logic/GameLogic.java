@@ -5,10 +5,6 @@ import java.util.List;
 
 import draw.GameScreen;
 import game.GameMain;
-import javafx.application.Platform;
-import javafx.scene.control.Alert;
-import javafx.scene.control.ButtonType;
-import javafx.scene.control.Alert.AlertType;
 import share.IRenderable;
 import share.RenderableHolder;
 
