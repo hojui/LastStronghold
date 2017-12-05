@@ -4,6 +4,7 @@ package share;
 import java.util.ArrayList;
 import java.util.List;
 
+import draw.GameScreen;
 import javafx.scene.image.Image;
 import javafx.scene.media.AudioClip;
 import logic.Player;
@@ -105,6 +106,7 @@ public class RenderableHolder {
 		this.score = 0;
 		this.player = new Player();
 		this.bulletState = 0;
+		GameScreen.inputs.clear();
 	}
 
 	public void addEnemy(IRenderable enemy) {
