@@ -25,6 +25,7 @@ public class GameMain {
 				isGameRunning = true;
 				while (isGameRunning) {
 					try {
+						RenderableHolder.getInstance().playGameBgm();
 						gameScreen.getGraphicsContext2D().clearRect(0, 0, SceneManager.SCENE_WIDTH, SceneManager.SCENE_HEIGHT);
 						gameLogic.updateLogic();
 						gameScreen.drawScreen();
@@ -46,6 +47,7 @@ public class GameMain {
 	
 	public static void goToResult() {
 		isGameRunning = false;
+		RenderableHolder.getInstance().stopGameBgm();
 		Platform.runLater(new Runnable() {
 			@Override
 			public void run() {
@@ -53,7 +55,10 @@ public class GameMain {
 				SceneManager.gotoSceneOf(scoreScreen);
 			}
 		});
-
+	}
+	
+	public static void stopGame() {
+		isGameRunning = false;
 	}
 	
 }

@@ -30,6 +30,9 @@ public class RenderableHolder {
 	private static AudioClip enemyDeadSound;
 	private static AudioClip enemyNotDeadSound;
 	private static AudioClip changeBulletSound;
+	private static AudioClip mainMenuBgm;
+	private static AudioClip gameBgm;
+	private static AudioClip scoreBgm;
 	
 	private int score;
 	
@@ -101,6 +104,9 @@ public class RenderableHolder {
 		enemyDeadSound = new AudioClip(ClassLoader.getSystemResource("sound/enemyDeadSound.wav").toString());
 		enemyNotDeadSound = new AudioClip(ClassLoader.getSystemResource("sound/enemyNotDeadSound.wav").toString());
 		changeBulletSound = new AudioClip(ClassLoader.getSystemResource("sound/changeBulletSound.wav").toString());
+		mainMenuBgm = new AudioClip(ClassLoader.getSystemResource("sound/mainMenuBgm.wav").toString());
+		gameBgm = new AudioClip(ClassLoader.getSystemResource("sound/gameBgm.wav").toString());
+		scoreBgm = new AudioClip(ClassLoader.getSystemResource("sound/scoreBgm.wav").toString());
 	}
 	
 	//--------------------------------------------------------------------
@@ -161,20 +167,58 @@ public class RenderableHolder {
 	
 	public void playShootSound() {
 		shootSound.setVolume(0.6);
-		RenderableHolder.shootSound.play();
+		shootSound.play();
 	}
 	
 	public void playEnemyDeadSound() {
-		RenderableHolder.enemyDeadSound.play();
+		enemyDeadSound.play();
 	}
 	
 	public void playEnemyNotDeadSound() {
-		RenderableHolder.enemyNotDeadSound.play();
+		enemyNotDeadSound.play();
 	}
 	
 	public void playChangeBulletSound() {
 		changeBulletSound.setVolume(0.6);
-		RenderableHolder.changeBulletSound.play();
+		changeBulletSound.play();
+	}
+	
+	public void playMainMenuBgm() {
+		if (!mainMenuBgm.isPlaying()) {
+			mainMenuBgm.setVolume(1.6);
+			mainMenuBgm.play();
+		}
+	}
+	
+	public void stopMainMenuBgm() {
+		RenderableHolder.mainMenuBgm.stop();
+	}
+	
+	public void playGameBgm() {
+		if (!gameBgm.isPlaying()) {
+			gameBgm.setVolume(1.3);
+			gameBgm.play();
+		}
+	}
+	
+	public void stopGameBgm() {
+		gameBgm.stop();
+	}
+	
+	public void playScoreBgm() {
+		if (!scoreBgm.isPlaying()) {
+			scoreBgm.play();
+		}
+	}
+	
+	public void stopScoreBgm() {
+		scoreBgm.stop();
+	}
+	
+	public void stopAllSound() {
+		mainMenuBgm.stop();
+		gameBgm.stop();
+		scoreBgm.stop();
 	}
 	
 	//--------------------------------------------------------------------

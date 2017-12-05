@@ -1,11 +1,10 @@
 package draw;
 
-import java.awt.Event;
-
 import com.sun.javafx.tk.FontLoader;
 import com.sun.javafx.tk.Toolkit;
 
 import game.GameMain;
+import javafx.animation.AnimationTimer;
 import javafx.application.Platform;
 import javafx.event.EventHandler;
 import javafx.geometry.VPos;
@@ -20,12 +19,21 @@ import share.RenderableHolder;
 import window.SceneManager;
 
 public class ScoreScreen extends Canvas{
+	
+	private AnimationTimer timer;
 
 	public ScoreScreen() {
 		super(SceneManager.SCENE_WIDTH,SceneManager.SCENE_HEIGHT);
 		GraphicsContext gc = this.getGraphicsContext2D();
-		drawScoreScreen(gc);
-		addEvent();
+		addEventHandler();
+		timer = new AnimationTimer() {
+			@Override
+			public void handle(long now) {
+				RenderableHolder.getInstance().playScoreBgm();
+				drawScoreScreen(gc);
+			}
+		};
+		timer.start();
 	}
 	
 	public void drawScoreScreen(GraphicsContext gc) {
@@ -44,15 +52,19 @@ public class ScoreScreen extends Canvas{
 		gc.fillText("press Enter to retry",400,400);
 	}
 	
-	public void addEvent() {
+	public void addEventHandler() {
 		this.setOnKeyPressed(new EventHandler<KeyEvent>() {
 
 			@Override
 			public void handle(KeyEvent event) {
 				if (event.getCode() == KeyCode.ENTER) {
+					timer.stop();
+					RenderableHolder.getInstance().stopScoreBgm();
 					GameMain.newGame();
 				}
 				if (event.getCode() == KeyCode.ESCAPE) {
+					timer.stop();
+					RenderableHolder.getInstance().stopScoreBgm();
 					Platform.exit();
 				}
 			}

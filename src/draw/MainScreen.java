@@ -13,6 +13,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.TextAlignment;
 import logic.Field;
+import share.RenderableHolder;
 import window.SceneManager;
 
 public class MainScreen extends Canvas {
@@ -30,6 +31,7 @@ public class MainScreen extends Canvas {
 		timer = new AnimationTimer() {
 			@Override
 			public void handle(long now) {
+				RenderableHolder.getInstance().playMainMenuBgm();
 				drawScreen();
 			}
 		};
@@ -58,9 +60,14 @@ public class MainScreen extends Canvas {
 			public void handle(KeyEvent e) {
 				if (e.getCode() == KeyCode.ENTER) {
 					timer.stop();
+					RenderableHolder.getInstance().stopMainMenuBgm();
 					GameMain.newGame();
 				}
-				else if (e.getCode() == KeyCode.ESCAPE) Platform.exit();
+				else if (e.getCode() == KeyCode.ESCAPE) {
+					timer.stop();
+					RenderableHolder.getInstance().stopMainMenuBgm();
+					Platform.exit();
+				}
 			}
 		});
 	}
