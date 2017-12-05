@@ -221,6 +221,7 @@ public class GameLogic {
 //		Alert alert = new Alert(AlertType.CONFIRMATION, "GAME OVER", ButtonType.OK);
 //		alert.setContentText("Score : " + this.score);
 //		alert.showAndWait();
+		
 		GameMain.goToResult();
 	}
 

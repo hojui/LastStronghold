@@ -2,7 +2,7 @@ package game;
 
 import draw.GameScreen;
 import draw.ScoreScreen;
-import javafx.animation.AnimationTimer;
+import javafx.application.Platform;
 import logic.GameLogic;
 import share.RenderableHolder;
 import window.SceneManager;
@@ -12,21 +12,32 @@ public class GameMain {
 	private static GameLogic gameLogic;
 	private static GameScreen gameScreen;
 	private static ScoreScreen scoreScreen;
-	private static AnimationTimer timer;
+	//private static AnimationTimer timer;
+	private static Thread gameThread;
+	private static boolean isGameRunning;
 	
 	public static void newGame() {
 		gameLogic = new GameLogic();
 		gameScreen = new GameScreen();
 		RenderableHolder.getInstance().newGame();
-		timer = new AnimationTimer() {
+		gameThread = new Thread(new Runnable() {
 			@Override
-			public void handle(long now) {
-				gameScreen.getGraphicsContext2D().clearRect(0, 0, SceneManager.SCENE_WIDTH, SceneManager.SCENE_HEIGHT);
-				gameLogic.updateLogic();
-				gameScreen.drawScreen();
+			public void run() {
+				isGameRunning = true;
+				while (isGameRunning) {
+					try {
+						gameScreen.getGraphicsContext2D().clearRect(0, 0, SceneManager.SCENE_WIDTH, SceneManager.SCENE_HEIGHT);
+						gameLogic.updateLogic();
+						gameScreen.drawScreen();
+						Thread.sleep(16);
+					} catch (InterruptedException e) {
+						e.printStackTrace();
+					}
+				}
 			}
-		};
-		timer.start();
+		});
+		gameThread.start();
+
 		SceneManager.gotoSceneOf(gameScreen);
 	}
 	
@@ -35,9 +46,15 @@ public class GameMain {
 	}
 	
 	public static void goToResult() {
-		timer.stop();
-		scoreScreen = new ScoreScreen();
-		SceneManager.gotoSceneOf(scoreScreen);
+		isGameRunning = false;
+		Platform.runLater(new Runnable() {
+			@Override
+			public void run() {
+				scoreScreen = new ScoreScreen();
+				SceneManager.gotoSceneOf(scoreScreen);
+			}
+		});
+
 	}
 	
 }
