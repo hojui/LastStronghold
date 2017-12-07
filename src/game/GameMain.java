@@ -2,6 +2,7 @@ package game;
 
 import draw.GameScreen;
 import draw.ScoreScreen;
+import draw.TutorialScreen;
 import javafx.application.Platform;
 import logic.GameLogic;
 import share.RenderableHolder;
@@ -12,6 +13,7 @@ public class GameMain {
 	private static GameLogic gameLogic;
 	private static GameScreen gameScreen;
 	private static ScoreScreen scoreScreen;
+	private static TutorialScreen tutorialScreen;
 	private static Thread gameThread;
 	private static boolean isGameRunning;
 	
@@ -55,6 +57,11 @@ public class GameMain {
 				SceneManager.gotoSceneOf(scoreScreen);
 			}
 		});
+	}
+	
+	public static void goToTutorial() {
+		tutorialScreen = new TutorialScreen();
+		SceneManager.gotoSceneOf(tutorialScreen);
 	}
 	
 	public static void stopGame() {

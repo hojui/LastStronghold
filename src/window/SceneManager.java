@@ -29,4 +29,6 @@ public final class SceneManager {
 		canvas.requestFocus();
 		primaryStage.setScene(newScene);
 	}
+	
+	
 }

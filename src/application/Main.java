@@ -1,5 +1,6 @@
 package application;
 
+import draw.MainScreen;
 import game.GameMain;
 import javafx.application.Application;
 import javafx.stage.Stage;
@@ -27,6 +28,7 @@ public class Main extends Application {
 	public void stop() {
 		RenderableHolder.getInstance().stopAllSound();
 		GameMain.stopGame();
+		MainScreen.getTimer().stop();
 	}
 	
 	public static void main(String[] args) {

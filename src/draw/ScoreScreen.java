@@ -49,7 +49,9 @@ public class ScoreScreen extends Canvas{
 		gc.fillText("Your Score", 400, 100);
 		gc.fillText(score+"", 400, 200);
 		gc.setFont(Font.font(30));
-		gc.fillText("press Enter to retry",400,400);
+		gc.fillText("press Enter to retry",400,350);
+		gc.setFont(Font.font(20));
+		gc.fillText("Exit: Esc", 750, 430);
 	}
 	
 	public void addEventHandler() {

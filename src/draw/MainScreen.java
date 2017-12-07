@@ -19,8 +19,8 @@ import window.SceneManager;
 public class MainScreen extends Canvas {
 	
 	private Field field = new Field();
-	private AnimationTimer timer;
-	
+	private static AnimationTimer timer;
+
 	// Constructor
 	public MainScreen() {
 		super(SceneManager.SCENE_WIDTH, SceneManager.SCENE_HEIGHT);
@@ -52,7 +52,11 @@ public class MainScreen extends Canvas {
 		gc.setTextBaseline(VPos.CENTER);
 		gc.fillText("Last Stronghold", 400, 100);
 		gc.setFont(Font.font(30));
-		gc.fillText("Press enter to start", 400, 380);
+		gc.fillText("Press enter to start", 400, 350);
+		gc.setFont(Font.font(20));
+		gc.setTextBaseline(VPos.BOTTOM);
+		gc.fillText("Tutorial: T", 60, 440);
+		gc.fillText("Exit: Esc", 750, 440);
 	}
 	
 	private void addEventHandler() {
@@ -67,9 +71,17 @@ public class MainScreen extends Canvas {
 					timer.stop();
 					RenderableHolder.getInstance().stopMainMenuBgm();
 					Platform.exit();
+				} else if (e.getCode() == KeyCode.T) {
+					timer.stop();
+					RenderableHolder.getInstance().stopMainMenuBgm();
+					GameMain.goToTutorial();
 				}
 			}
 		});
+	}
+	
+	public static AnimationTimer getTimer() {
+		return timer;
 	}
 	
 }
