@@ -8,13 +8,14 @@ import share.RenderableHolder;
 import window.SceneManager;
 
 public class GameMain {
-	
+
 	private static GameLogic gameLogic;
 	private static GameScreen gameScreen;
 	private static ScoreScreen scoreScreen;
 	private static Thread gameThread;
 	private static boolean isGameRunning;
-	
+	private static boolean isGamePaused;
+
 	public static void newGame() {
 		gameLogic = new GameLogic();
 		gameScreen = new GameScreen();
@@ -25,11 +26,20 @@ public class GameMain {
 				isGameRunning = true;
 				while (isGameRunning) {
 					try {
-						RenderableHolder.getInstance().playGameBgm();
-						gameScreen.getGraphicsContext2D().clearRect(0, 0, SceneManager.SCENE_WIDTH, SceneManager.SCENE_HEIGHT);
-						gameLogic.updateLogic();
-						gameScreen.drawScreen();
-						Thread.sleep(20);
+						if (!isGamePaused) {
+							RenderableHolder.getInstance().playGameBgm();
+							gameLogic.updateLogic();
+							gameScreen.drawScreen();
+							Thread.sleep(20);
+						} else {
+							if (!GameScreen.inputs.isEmpty()) {
+								isGamePaused = false;
+								GameScreen.inputs.clear();
+							}
+							RenderableHolder.getInstance().stopGameBgm();
+							gameScreen.drawPauseScreen();
+							Thread.sleep(20);
+						}
 					} catch (InterruptedException e) {
 						e.printStackTrace();
 					}
@@ -40,13 +50,14 @@ public class GameMain {
 
 		SceneManager.gotoSceneOf(gameScreen);
 	}
-	
+
 	public static void goToMainMenu() {
 		SceneManager.goToMainMenu();
 	}
-	
+
 	public static void goToResult() {
 		isGameRunning = false;
+		isGamePaused = false;
 		RenderableHolder.getInstance().stopGameBgm();
 		Platform.runLater(new Runnable() {
 			@Override
@@ -57,8 +68,16 @@ public class GameMain {
 		});
 	}
 	
+	public static void pauseGame() {
+		isGamePaused = true;
+	}
+	
+	public static void resumeGame() {
+		isGamePaused = false;
+	}
+
 	public static void stopGame() {
 		isGameRunning = false;
 	}
-	
+
 }

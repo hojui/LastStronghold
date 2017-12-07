@@ -17,7 +17,9 @@ import logic.EnemyYellow;
 import logic.Field;
 import share.IRenderable;
 import share.RenderableHolder;
+import window.SceneManager;
 
+@SuppressWarnings("restriction")
 public class GameScreen extends Canvas {
 
 	public static ArrayList<String> inputs = new ArrayList<String>();
@@ -60,12 +62,26 @@ public class GameScreen extends Canvas {
 		drawDeadEnemy(gc);
 	}
 
+	public void drawPauseScreen() {
+		GraphicsContext gc = this.getGraphicsContext2D();
+		drawEnemys(gc);
+		drawBullets(gc);
+		drawPlayer(gc);
+		drawStatus(gc);
+		drawDeadEnemy(gc);
+		gc.setFill(Color.WHITE);
+		gc.setFont(Font.font(35));
+		double fontWidth = Toolkit.getToolkit().getFontLoader().computeStringWidth("PAUSE", gc.getFont());
+		gc.fillText("PAUSE", SceneManager.SCENE_WIDTH / 2 - fontWidth / 2, SceneManager.SCENE_HEIGHT / 2 - 15);
+		gc.setFont(Font.font(15));
+		double fontWidth2 = Toolkit.getToolkit().getFontLoader().computeStringWidth("Press any key to resume",
+				gc.getFont());
+		gc.fillText("Press any key to resume", SceneManager.SCENE_WIDTH / 2 - fontWidth2 / 2,
+				SceneManager.SCENE_HEIGHT / 2 + 10);
+	}
+
 	private void drawField(GraphicsContext gc) {
 		field.tickIncrease();
-		// if (field.getTick() > 25) {
-		// field.draw(gc);
-		// field.tickReset();
-		// }
 		field.draw(gc);
 	}
 
@@ -121,24 +137,21 @@ public class GameScreen extends Canvas {
 		// Set score display
 		gc.setFill(Color.BLACK);
 		gc.setFont(Font.font(30));
-		@SuppressWarnings("restriction")
 		double fontWidth = Toolkit.getToolkit().getFontLoader()
 				.computeStringWidth("Score : " + RenderableHolder.getInstance().getScore(), gc.getFont());
 		gc.fillText("Score : " + RenderableHolder.getInstance().getScore(), 800 - fontWidth - 17, 436);
 	}
-	
+
 	private void drawDeadEnemy(GraphicsContext gc) {
 		for (IRenderable enemy : RenderableHolder.getInstance().getDeadEnemies()) {
 			Enemy tmp = (Enemy) enemy;
 			tmp.tickDeadIncrease();
-			
+
 			if (tmp instanceof EnemyRed) {
-				((EnemyRed)tmp).drawDeadEnemy(gc);
-			}
-			else if (tmp instanceof EnemyBlue) {
+				((EnemyRed) tmp).drawDeadEnemy(gc);
+			} else if (tmp instanceof EnemyBlue) {
 				((EnemyBlue) tmp).drawDeadEnemy(gc);
-			}
-			else if (tmp instanceof EnemyYellow) {
+			} else if (tmp instanceof EnemyYellow) {
 				((EnemyYellow) tmp).drawDeadEnemy(gc);
 			}
 		}
