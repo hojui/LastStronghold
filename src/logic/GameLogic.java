@@ -227,6 +227,10 @@ public class GameLogic {
 			RenderableHolder.getInstance().setBulletState(bulletState);
 			GameScreen.inputs.remove("Z");
 		}
+		if (GameScreen.inputs.contains("ESCAPE")) {
+			GameMain.pauseGame();
+			GameScreen.inputs.remove("ESCAPE");
+		}
 		
 		// Ultimate Super Button, Don't push it!!
 		if (GameScreen.inputs.contains("J") && GameScreen.inputs.contains("U")) {

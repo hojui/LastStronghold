@@ -47,7 +47,6 @@ public class RenderableHolder {
 			loadResource();
 		} catch (Exception e) {
 			e.printStackTrace();
-			System.out.println("aslkfnlandg");
 		}
 	}
 	
@@ -166,12 +165,11 @@ public class RenderableHolder {
 	}
 	
 	public void playShootSound() {
-		shootSound.setVolume(0.6);
-		shootSound.play();
+		shootSound.play(0.5);
 	}
 	
 	public void playEnemyDeadSound() {
-		enemyDeadSound.play();
+		enemyDeadSound.play(0.9);
 	}
 	
 	public void playEnemyNotDeadSound() {
@@ -179,14 +177,12 @@ public class RenderableHolder {
 	}
 	
 	public void playChangeBulletSound() {
-		changeBulletSound.setVolume(0.6);
-		changeBulletSound.play();
+		changeBulletSound.play(0.5);
 	}
 	
 	public void playMainMenuBgm() {
 		if (!mainMenuBgm.isPlaying()) {
-			mainMenuBgm.setVolume(1.6);
-			mainMenuBgm.play();
+			mainMenuBgm.play(1.5);
 		}
 	}
 	
@@ -196,18 +192,17 @@ public class RenderableHolder {
 	
 	public void playGameBgm() {
 		if (!gameBgm.isPlaying()) {
-			gameBgm.setVolume(1.3);
-			gameBgm.play();
+			gameBgm.play(1.2);
 		}
 	}
-	
+
 	public void stopGameBgm() {
 		gameBgm.stop();
 	}
 	
 	public void playScoreBgm() {
 		if (!scoreBgm.isPlaying()) {
-			scoreBgm.play();
+			scoreBgm.play(0.8);
 		}
 	}
 	
