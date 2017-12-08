@@ -72,8 +72,6 @@ public class MainScreen extends Canvas {
 					RenderableHolder.getInstance().stopMainMenuBgm();
 					Platform.exit();
 				} else if (e.getCode() == KeyCode.T) {
-					timer.stop();
-					RenderableHolder.getInstance().stopMainMenuBgm();
 					GameMain.goToTutorial();
 				}
 			}

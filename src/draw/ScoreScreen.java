@@ -1,8 +1,5 @@
 package draw;
 
-import com.sun.javafx.tk.FontLoader;
-import com.sun.javafx.tk.Toolkit;
-
 import game.GameMain;
 import javafx.animation.AnimationTimer;
 import javafx.application.Platform;
@@ -42,8 +39,6 @@ public class ScoreScreen extends Canvas{
 		int score = RenderableHolder.getInstance().getScore();
 		gc.setFill(Color.WHITE);
 		gc.setFont(Font.font(60));
-		FontLoader fontLoader = Toolkit.getToolkit().getFontLoader();
-		double w = fontLoader.computeStringWidth(score + "" ,gc.getFont());
 		gc.setTextAlign(TextAlignment.CENTER);
 		gc.setTextBaseline(VPos.CENTER);
 		gc.fillText("Your Score", 400, 100);

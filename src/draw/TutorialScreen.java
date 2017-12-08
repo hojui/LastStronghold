@@ -26,8 +26,10 @@ public class TutorialScreen extends Canvas {
 		gc.setFont(Font.font(30));
 		gc.setTextBaseline(VPos.TOP);
 		gc.setFill(Color.WHITE);
-		gc.fillText("Z , C\t\tChange Bullet", 100, 100);
-		gc.fillText("X\t\tShoot", 100, 200);
+		gc.fillText("Z , C\t\t\t\tChange Bullet", 150, 50);
+		gc.fillText("X\t\t\t\tShoot", 150, 150);
+		gc.fillText("Arrow Keys\t\tMove Character", 150, 250);
+		gc.fillText("ESC\t\t\t\tPause", 150, 350);
 		gc.setFont(Font.font(20));
 		gc.fillText("Back : B", 20, 415);
 	}
