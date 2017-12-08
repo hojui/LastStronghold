@@ -71,13 +71,17 @@ public class GameScreen extends Canvas {
 		drawDeadEnemy(gc);
 		gc.setFill(Color.WHITE);
 		gc.setFont(Font.font(35));
-		double fontWidth = Toolkit.getToolkit().getFontLoader().computeStringWidth("PAUSE", gc.getFont());
-		gc.fillText("PAUSE", SceneManager.SCENE_WIDTH / 2 - fontWidth / 2, SceneManager.SCENE_HEIGHT / 2 - 15);
+		double pauseFontWidth = Toolkit.getToolkit().getFontLoader().computeStringWidth("PAUSE", gc.getFont());
+		gc.fillText("PAUSE", SceneManager.SCENE_WIDTH / 2 - pauseFontWidth / 2, SceneManager.SCENE_HEIGHT / 2 - 25);
 		gc.setFont(Font.font(15));
-		double fontWidth2 = Toolkit.getToolkit().getFontLoader().computeStringWidth("Press any key to resume",
+		double enterFontWidth = Toolkit.getToolkit().getFontLoader().computeStringWidth("Press ENTER to resume",
 				gc.getFont());
-		gc.fillText("Press any key to resume", SceneManager.SCENE_WIDTH / 2 - fontWidth2 / 2,
-				SceneManager.SCENE_HEIGHT / 2 + 10);
+		gc.fillText("Press ENTER to resume", SceneManager.SCENE_WIDTH / 2 - enterFontWidth / 2,
+				SceneManager.SCENE_HEIGHT / 2);
+		double escFontWidth = Toolkit.getToolkit().getFontLoader().computeStringWidth("Press ESC to exit",
+				gc.getFont());
+		gc.fillText("Press ESC to exit", SceneManager.SCENE_WIDTH / 2 - escFontWidth / 2,
+				SceneManager.SCENE_HEIGHT / 2 + 20);
 	}
 
 	private void drawField(GraphicsContext gc) {

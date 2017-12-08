@@ -34,7 +34,9 @@ public class GameMain {
 							gameScreen.drawScreen();
 							Thread.sleep(20);
 						} else {
-							if (!GameScreen.inputs.isEmpty()) {
+							if (GameScreen.inputs.contains("ESCAPE")) {
+								Platform.exit();
+							} else if (GameScreen.inputs.contains("ENTER")) {
 								isGamePaused = false;
 								GameScreen.inputs.clear();
 							}
@@ -49,7 +51,6 @@ public class GameMain {
 			}
 		});
 		gameThread.start();
-
 		SceneManager.gotoSceneOf(gameScreen);
 	}
 
