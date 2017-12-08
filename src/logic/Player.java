@@ -13,7 +13,7 @@ public class Player extends Sprite implements IRenderable {
 		super();
 		shootTick = 15; // 0.25 second
 		super.tick = 30;
-		super.setPosition(25, 225);
+		super.setPosition(25, 165);
 		super.width = 75;
 		super.height = 75;
 	}
