@@ -234,20 +234,27 @@ public class GameLogic {
 		
 		// Ultimate Super Button, Don't push it!!
 		if (GameScreen.inputs.contains("J") && GameScreen.inputs.contains("U")) {
+			// Kill all enemies on screen
 			this.secretJuiButton();
 		}
 		if (GameScreen.inputs.contains("M") && GameScreen.inputs.contains("A")) {
+			// Generate hordes of enemies
 			this.secretMaxButton();
 		}
 		if (GameScreen.inputs.contains("L") && GameScreen.inputs.contains("K")) {
+			// Shoot random bullet
 			this.ultimateLuckyBullet();
+		}
+		if (GameScreen.inputs.contains("D") && GameScreen.inputs.contains("E")) {
+			// Instant dead
+			endGame();
 		}
 	}
 
 	private void updateLevel() {
 		if (score > 12000) {
-			enemyTick = 10;
-			currentEnemySpeed = -2.15;
+			enemyTick = 20;
+			currentEnemySpeed = -2.00;
 		} else if (score > 8000) {
 			enemyTick = 30;
 			currentEnemySpeed = -1.85;
@@ -257,6 +264,9 @@ public class GameLogic {
 		} else if (score > 3000) {
 			enemyTick = 50;
 			currentEnemySpeed = -1.35;
+		} else {
+			enemyTick = 60;
+			currentEnemySpeed = -1.15;
 		}
 	}
 
