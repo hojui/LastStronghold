@@ -38,11 +38,13 @@ public class ScoreScreen extends Canvas{
 		gc.fillRect(0, 0, SceneManager.SCENE_WIDTH, SceneManager.SCENE_HEIGHT);
 		int score = RenderableHolder.getInstance().getScore();
 		gc.setFill(Color.WHITE);
-		gc.setFont(Font.font(60));
+		gc.setFont(Font.font(80));
 		gc.setTextAlign(TextAlignment.CENTER);
 		gc.setTextBaseline(VPos.CENTER);
-		gc.fillText("Your Score", 400, 100);
-		gc.fillText(score+"", 400, 200);
+		gc.fillText("GAME OVER"
+				+ "", 400, 100);
+		gc.setFont(Font.font(60));
+		gc.fillText("Score : " + score, 400, 230);
 		gc.setFont(Font.font(30));
 		gc.fillText("press Enter to retry",400,350);
 		gc.setFont(Font.font(20));
