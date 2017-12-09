@@ -16,7 +16,7 @@ public class Main extends Application {
 		try {
 			SceneManager.initialize(stage);
 			SceneManager.goToMainMenu();
-			stage.setTitle("Last Stronghold I");
+			stage.setTitle("Last Defense");
 			stage.centerOnScreen();
 	
 		} catch(Exception e) {

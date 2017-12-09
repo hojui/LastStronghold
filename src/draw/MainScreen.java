@@ -47,10 +47,10 @@ public class MainScreen extends Canvas {
 		field.tickIncrease();
 		field.draw(gc);
 		gc.setFill(Color.WHITE);
-		gc.setFont(Font.font(60));
+		gc.setFont(Font.font(80));
 		gc.setTextAlign(TextAlignment.CENTER);
 		gc.setTextBaseline(VPos.CENTER);
-		gc.fillText("Last Stronghold", 400, 100);
+		gc.fillText("Last Defense", 400, 120);
 		gc.setFont(Font.font(30));
 		gc.fillText("Press enter to start", 400, 350);
 		gc.setFont(Font.font(20));
