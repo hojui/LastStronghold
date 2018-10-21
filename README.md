@@ -16,7 +16,7 @@ This project is a part of term project of 2110215 Programing Methodology 1/2017,
 - To learn how to develop softwares in team environment effectively.
 - To learn how to write a report/documentation, UML and class description.
 ### Overview
-This project is a sprite-based 2D game inspired by classic game like Space Invader.
-You controls one spaceship, which is the last human's defense line to defense the earth from alien invasion.
-All the details about game and application structure are writen *beautifully* in the project report. Feel free to read it
+This project is a sprite-based 2D game inspired by classic game like Space Invader.  
+You controls one spaceship, which is the last human's defense line to defense the earth from alien invasion.  
+All the details about game and application structure are writen *beautifully* in the project report. Feel free to read it.  
 This project was graded and received comments from instructors to learn where can be improved for the team members to build next the softwares better.
