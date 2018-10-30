@@ -2,7 +2,7 @@
 <img src="https://i.imgur.com/djsLeIm.png" width="950" height="293">  
 
 This project is a part of term project of 2110215 Programing Methodology 1/2017, Computer Engineering, Chulalongkorn University.
-(The project firstly named **Last Stringhold** and changed to **Last Defense** in the final release)  
+(The project firstly named **Last Stronghold** and changed to **Last Defense** in the final release)  
 ### Project Team
 - **Natchanon Arunkeereewat** 
 [@maxnatchanon / @Max347skn34 (old account)]
