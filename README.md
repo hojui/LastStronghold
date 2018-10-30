@@ -6,7 +6,7 @@ This project is a part of term project of 2110215 Programing Methodology 1/2017,
 ### Project Team
 - **Natchanon Arunkeereewat** 
 [@maxnatchanon / @Max347skn34 (old account)]
-- **Siwa Boonphanmongkol**
+- **Siwa Boonpunmongkol**
 [@juierror]
 ### Project Objective
 -  To better understanding in application developing process with OOP in Java.
